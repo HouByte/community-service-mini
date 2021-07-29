@@ -1,9 +1,10 @@
-.container{
+.container {
     display: flex;
     flex-direction: column;
     height: 100%;
 }
-.tabs{
+
+.tabs {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -11,25 +12,44 @@
     box-sizing: border-box;
 }
 
-.tab-item{
+.tab-item {
     flex: 1;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
-.tab-label{
+
+.tab-label {
     color: #888;
     white-space: nowrap;
 }
 
-.active-tab{
+.active-tab {
     color: black;
     font-weight: bold;
 }
 
-.divider{
+.divider {
     margin-top: 10rpx;
     height: 6rpx;
     width: 50rpx;
     background-color: #1296db;
+}
+
+.category-swiper-item {
+    border-radius: 20rpx;
+    width: 300rpx;
+    height: 150rpx;
+    background-image: linear-gradient(to right, #e68d44, #eb6d59);
+}
+
+.category-name {
+    position: absolute;
+    top: 20rpx;
+    left: 20rpx;
+    color: #fff;
+}
+
+.category {
+    padding: 30rpx 0 30rpx 30rpx;
 }
