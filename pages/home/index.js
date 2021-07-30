@@ -1,3 +1,7 @@
+import Service from "../../model/service"
+
+const service = new Service();
+
 Page({
     data: {
         tabs:['全部服务','在提供','正在找'],
@@ -26,7 +30,10 @@ Page({
         ]
     },
     onLoad: function (options) {
-
+        this._getServiceList();
+    },
+    _getServiceList(){
+        service.getServiceList();
     },
     handlerTabsChange:function (e){
         console.log(e);
