@@ -11,10 +11,12 @@ class  Service {
      * @param type 服务类型
      * @param categoryId 分类
      */
-    async getServiceList(pageNum=null,pageSize=null,type=null,categoryId=null){
+    static async getServiceList(pageNum=null,pageSize=null,type=null,categoryId=null){
         console.log("分页获取服务列表")
-        return await Http.get('6103b25e311c491a73973c59?/test?id=1')
+        return await Http.get('6103b632311c491a739a77b6?/service/list')
     }
+
+
 }
 
 module.exports = Service

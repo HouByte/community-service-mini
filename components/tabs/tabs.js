@@ -18,7 +18,6 @@ Component({
         //父组件（页面）通过属性给自定义组件传递参数
         //自定义组件通过自定义事件给父组件（页面）传递参数
         handlerTabChange:function (e){
-            console.log(e);
             const index = e.currentTarget.dataset.index;
             //如果是当前位置不执行操作
             if (index === this.data.currentTabIndex){
@@ -33,7 +32,6 @@ Component({
             this.triggerEvent('change',{index});
         },
         handleTouchMove(e){
-            console.log(e)
             const direction = e.direction;
             const currentTabIndex = this.data.currentTabIndex;
             const targetTabIndex = currentTabIndex + direction;

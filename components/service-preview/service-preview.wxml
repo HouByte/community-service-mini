@@ -1,0 +1,31 @@
+<view class="container">
+    <view class="left">
+        <view class="type-tag">{{service.type === 1 ? '在提供':'正在找'}}</view>
+        <image class="cover-image" src="{{service.coverUrl}}"></image>
+    </view>
+    <view class="right">
+        <view class="row">
+            <view class="service-name">{{service.title}}</view>
+            <view class="category-tag">
+                <i-icon name="biaoqian" color="#f27013"></i-icon>
+                <view class="category-text">{{service.category.name}}</view>
+            </view>
+        </view>
+        <view class="row">
+            <view class="publisher">
+                <view class="publisher-avatar">
+                    <image class="publisher-avatar-image" src="{{service.publisher.avatarUrl}}"></image>
+                </view>
+                <view class="publisher-nickname">{{service.publisher.nickname}}</view>
+            </view>
+            <view class="score">★ {{service.score}}</view>
+        </view>
+        <view class="row">
+            <view class="create-time">{{service.created}}</view>
+        </view>
+        <view class="row row-last">
+            <view class="price"><text class="label">￥</text>{{service.price}}</view>
+            <view class="sales">{{service.salesVolume}}</view>
+        </view>
+    </view>
+</view>

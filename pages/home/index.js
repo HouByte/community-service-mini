@@ -1,41 +1,29 @@
 import Service from "../../model/service"
-
-const service = new Service();
+import Category from "../../model/category"
 
 Page({
     data: {
         tabs:['全部服务','在提供','正在找'],
         currentTabIndex:0,
-        categoryList:[
-            {
-                id:1,
-                name:'疏通'
-            },
-            {
-                id:2,
-                name:'家电维修'
-            },
-            {
-                id:3,
-                name:'在线教育'
-            },
-            {
-                id:4,
-                name:'婚恋'
-            },
-            {
-                id:5,
-                name:'宠物'
-            }
-        ]
+        categoryList:[],
+        serviceList:[]
     },
     onLoad: function (options) {
         this._getServiceList();
-
+        this._getCategoryList();
     },
     async _getServiceList(){
-        const res = await service.getServiceList();
-        console.log("list ",res)
+        const data = await Service.getServiceList();
+        console.log("data",data)
+        this.setData({
+            serviceList:data.list
+        })
+    },
+    async _getCategoryList(){
+        const categoryList = await Category.getCategoryListWithAll();
+        this.setData({
+            categoryList
+        })
     },
     handlerTabsChange:function (e){
         console.log(e);
@@ -43,5 +31,17 @@ Page({
 
     handlerCategoryChange:function (e){
         console.log(e);
+    },
+    /**
+     * 下拉刷新
+     */
+    onPullDownRefresh() {
+        console.log("下拉刷新")
+    },
+    /**
+     * 上啦触底
+     */
+    onReachBottom() {
+        console.log("上啦触底")
     }
 });
