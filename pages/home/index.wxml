@@ -1,20 +1,21 @@
 <view class="container">
-    <view class="tabs">
-        <view class="tab-item" wx:for="{{tabs}}" wx:key="index">
-            <view class="tab-label {{currentTabIndex === index ?'active-tab':''}}" data-index="{{index}}" bind:tap="handlerTabChange">
-                {{item}}
+    <i-tabs tabs="{{tabs}}" bind:change="handlerTabsChange">
+
+        <view slot="extend">
+            <view class="category">
+                <swiper style="height:150rpx" display-multiple-items="{{2}}" next-margin="60rpx">
+                    <swiper-item wx:for="{{categoryList}}" data-id="{{item.id}}" bind:tap="handlerCategoryChange">
+                        <view class="category-swiper-item">
+                            <text class="category-name">{{item.name}}</text>
+                        </view>
+                    </swiper-item>
+                </swiper>
             </view>
-            <view class="divider" wx:if="{{currentTabIndex === index}}"></view>
         </view>
-    </view>
-    <view class="category">
-        <swiper style="height:150rpx" display-multiple-items="{{2}}" next-margin="60rpx">
-            <swiper-item wx:for="{{categoryList}}" data-id="{{item.id}}" bind:tap="handlerCategoryChange">
-                <view class="category-swiper-item">
-                    <text class="category-name">{{item.name}}</text>
-                </view>
-            </swiper-item>
-        </swiper>
-    </view>
-    <view class="tabs-panel"></view>
+        <view slot="panel">
+            panel
+        </view>
+    </i-tabs>
+
+<!--    <view class="tabs-panel"></view>-->
 </view>

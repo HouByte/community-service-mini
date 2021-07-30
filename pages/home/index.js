@@ -28,12 +28,10 @@ Page({
     onLoad: function (options) {
 
     },
-    handlerTabChange:function (e){
+    handlerTabsChange:function (e){
         console.log(e);
-        this.setData({
-            currentTabIndex:e.currentTarget.dataset.index
-        })
     },
+
     handlerCategoryChange:function (e){
         console.log(e);
     }

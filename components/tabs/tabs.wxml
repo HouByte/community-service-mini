@@ -1,0 +1,15 @@
+<view class="container">
+    <view class="tabs">
+        <view class="tab-item" wx:for="{{tabs}}" wx:key="index">
+            <view class="tab-label {{currentTabIndex === index ?'active-tab':''}}" data-index="{{index}}" bind:tap="handlerTabChange">
+                {{item}}
+            </view>
+            <view class="divider" wx:if="{{currentTabIndex === index}}"></view>
+        </view>
+    </view>
+    <slot name="extend"></slot>
+    <view class="tab-panel">
+        <!-- 插槽 -->
+        <slot name="panel"></slot>
+    </view>
+</view>
