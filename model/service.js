@@ -1,3 +1,5 @@
+import Http from  "../utils/http";
+
 
 class  Service {
 
@@ -11,6 +13,8 @@ class  Service {
      */
     getServiceList(pageNum=null,pageSize=null,type=null,categoryId=null){
         console.log("分页获取服务列表")
+        Http.request({uri:'6103b25e311c491a73973c59?/test?id=1'})
+
     }
 }
 
