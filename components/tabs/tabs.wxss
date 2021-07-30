@@ -35,3 +35,7 @@
     width: 50rpx;
     background-color: #1296db;
 }
+
+.tab-panel{
+    flex: 1;
+}

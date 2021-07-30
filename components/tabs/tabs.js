@@ -20,6 +20,11 @@ Component({
         handlerTabChange:function (e){
             console.log(e);
             const index = e.currentTarget.dataset.index;
+            //如果是当前位置不执行操作
+            if (index === this.data.currentTabIndex){
+                return;
+            }
+
             this.setData({
                 currentTabIndex:index
             })
@@ -27,5 +32,27 @@ Component({
             //产生事件
             this.triggerEvent('change',{index});
         },
+        handleTouchMove(e){
+            console.log(e)
+            const direction = e.direction;
+            const currentTabIndex = this.data.currentTabIndex;
+            const targetTabIndex = currentTabIndex + direction;
+
+            //边界判断
+            if (targetTabIndex <0 || targetTabIndex > this.data.tabs.length -1 ){
+                return ;
+            }
+
+            //创建调用方法结构
+            const  customEvent = {
+                currentTarget:{
+                    dataset:{
+                        index:targetTabIndex
+                    }
+                }
+            }
+            //使用已有方法
+            this.handlerTabChange(customEvent);
+        }
     }
 });

@@ -1,0 +1,29 @@
+
+var  touchStartX;
+
+function handleTouchStart(e){
+    //记录X值开始位置
+    touchStartX = e.changedTouches[0].clientX;
+}
+function handleTouchEnd(e,ownerInstance){
+    var touchEndX =e.changedTouches[0].clientX;
+    //计算 负数向左滑动 正数向右滑动
+    var distance = touchEndX - touchStartX;
+    // -1 向右；0不动；1向左
+    var direction = 0;
+    if (distance < 0 && distance < -70){
+        direction = 1;
+    }else if (distance > 0 && distance > 70){
+        direction = -1;
+    }
+
+    if (distance !== 0){
+        //直接调用引用该WXS的页面或者组件非法
+        ownerInstance.callMethod('handleTouchMove',{direction:direction})
+    }
+}
+
+module.exports ={
+    handleTouchStart:handleTouchStart,
+    handleTouchEnd:handleTouchEnd
+}
