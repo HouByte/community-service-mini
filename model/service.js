@@ -11,12 +11,9 @@ class  Service {
      * @param type 服务类型
      * @param categoryId 分类
      */
-    getServiceList(pageNum=null,pageSize=null,type=null,categoryId=null){
+    async getServiceList(pageNum=null,pageSize=null,type=null,categoryId=null){
         console.log("分页获取服务列表")
-        const res =Http.get('6103b25e311c491a73973c59?/test?id=1')
-        res.then((res)=>{
-            console.log("then ",res);
-        })
+        return await Http.get('6103b25e311c491a73973c59?/test?id=1')
     }
 }
 

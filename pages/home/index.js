@@ -31,9 +31,11 @@ Page({
     },
     onLoad: function (options) {
         this._getServiceList();
+
     },
-    _getServiceList(){
-        service.getServiceList();
+    async _getServiceList(){
+        const res = await service.getServiceList();
+        console.log("list ",res)
     },
     handlerTabsChange:function (e){
         console.log(e);
