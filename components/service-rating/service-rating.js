@@ -1,3 +1,5 @@
+import {getDataSet} from "../../utils/utils";
+
 Component({
     properties: {
         rating:{
@@ -9,7 +11,7 @@ Component({
     methods: {
         handlePreview:function (e) {
             console.log(e);
-            const index = e.currentTarget.dataset.index;
+            const index = getDataSet(e,"index");
             wx.previewImage({
                 urls:this.data.rating.illustration,
                 current:this.data.rating.illustration[index]

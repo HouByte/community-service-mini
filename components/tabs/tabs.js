@@ -1,3 +1,5 @@
+import {getDataSet} from "../../utils/utils";
+
 Component({
     options:{
       multipleSlots:true //开启多插槽
@@ -18,7 +20,7 @@ Component({
         //父组件（页面）通过属性给自定义组件传递参数
         //自定义组件通过自定义事件给父组件（页面）传递参数
         handlerTabChange:function (e){
-            const index = e.currentTarget.dataset.index;
+            const index = getDataSet(e,"index");
             //如果是当前位置不执行操作
             if (index === this.data.currentTabIndex){
                 return;

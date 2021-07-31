@@ -1,6 +1,6 @@
 import Service from "../../model/service"
 import Category from "../../model/category"
-import {throttle} from "../../utils/utils";
+import {getDataSet, throttle} from "../../utils/utils";
 
 const service = new Service();
 Page({
@@ -44,15 +44,16 @@ Page({
     }),
 
     handlerCategoryChange:throttle(function (e){
-        if (this.data.categoryId === e.currentTarget.dataset.id){
+        const id = getDataSet(e,"id");
+        if (this.data.categoryId === id){
             return;
         }
-        this.data.categoryId = e.currentTarget.dataset.id;
+        this.data.categoryId = id;
         this._refreshServiceList();
     }),
     handleSelectService:(e)=>{
         console.log(e);
-        const serviceId = e.currentTarget.dataset.id;
+        const serviceId = getDataSet(e,"id");
         wx.navigateTo({
             url:'/pages/service-detail/service-detail?id='+serviceId
         })
