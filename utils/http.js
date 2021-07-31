@@ -5,11 +5,12 @@ import wxToPromise from "./wx";
 class Http{
     //url:baseUrl+path
     //
-    static async request({uri,data=null,method='GET'}){
+    static async request({uri,data=null,header={},method='GET'}){
        const res = await wxToPromise('request',{
             url:ApiConfig.baseUrl+uri,
             data,
-            method
+            method,
+            header
         })
 
         console.log(res);
@@ -34,12 +35,24 @@ class Http{
         }
     }
 
-    static async get(uri,data=null){
+    static async get(uri,data=null,header={}){
         return this.request({uri,data});
     }
 
-    static async post(uri,data=null){
+    static async post(uri,data=null,header={}){
         return this.request({uri,data,method:'POST'});
+    }
+
+    static async getFrom(uri,data=null,header= {
+        'content-type': 'application/x-www-form-urlencoded'
+    }){
+        return this.request({uri,data,header});
+    }
+
+    static async postFrom(uri,data=null,header= {
+        'content-type': 'application/x-www-form-urlencoded'
+    }){
+        return this.request({uri,data,header,method:'POST'});
     }
 
     static _showError(errorCode,message){
