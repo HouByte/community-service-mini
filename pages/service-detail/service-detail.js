@@ -1,13 +1,15 @@
 import Service from "../../model/service";
 import User from "../../model/user";
 import Rating from "../../model/rating";
+import serviceType from "../../enum/service-type";
 const rating = new Rating();
 Page({
     data: {
         serviceId:'',
         service:null,
         isPublisher:false,
-        ratingList:[]
+        ratingList:[],
+        serviceTypeEnum:serviceType
     },
     onLoad:async function (options) {
         console.log(options.id);
