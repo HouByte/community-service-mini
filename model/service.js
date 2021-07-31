@@ -36,6 +36,10 @@ class Service {
         return this.data;
     }
 
+    static async getServiceById(id){
+        return  await Http.getFrom('6104d84b311c491a73d58adc?/service/id')
+
+    }
     reset(){
         this.pageNum=1;
         this.pageSize=5;

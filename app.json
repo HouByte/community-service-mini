@@ -3,13 +3,15 @@
     "pages/home/index",
     "pages/message/index",
     "pages/my/index",
-    "pages/publish/index"
+    "pages/publish/index",
+    "pages/service-detail/service-detail"
   ],
   "window":{
     "backgroundTextStyle":"dark",
     "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "Weixin",
-    "navigationBarTextStyle":"black"
+    "navigationBarTitleText": "家政服务",
+    "navigationBarTextStyle":"black",
+    "backgroundColorBottom": "#efefef"
   },
   "tabBar": {
     "borderStyle": "white",
@@ -46,6 +48,7 @@
   "sitemapLocation": "sitemap.json",
   "usingComponents": {
     "i-icon": "/components/icon/icon",
-    "i-show-status": "/components/show-status/show-status"
+    "i-show-status": "/components/show-status/show-status",
+    "i-avatar": "/components/avatar/avatar"
   }
 }

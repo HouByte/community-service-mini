@@ -50,6 +50,13 @@ Page({
         this.data.categoryId = e.currentTarget.dataset.id;
         this._refreshServiceList();
     }),
+    handleSelectService:(e)=>{
+        console.log(e);
+        const serviceId = e.currentTarget.dataset.id;
+        wx.navigateTo({
+            url:'/pages/service-detail/service-detail?id='+serviceId
+        })
+    },
     /**
      * 下拉刷新
      */
