@@ -1,8 +1,9 @@
 import serviceType from "../../../../enum/service-type";
+import behavior from "../behavior";
 
 Component({
+    behaviors:[behavior],
     properties: {
-        service:Object
     },
     data: {
         serviceTypeEnum:serviceType

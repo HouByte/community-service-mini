@@ -1,9 +1,10 @@
 import serviceStatus from "../../../../enum/service-status";
 import serviceAction from "../../../../enum/service-action";
+import behavior from "../behavior";
 
 Component({
+    behaviors:[behavior],
     properties: {
-        service:Object
     },
     data: {
         serviceStatusEnum:serviceStatus,
