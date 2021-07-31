@@ -1,5 +1,6 @@
 import Service from "../../model/service"
 import Category from "../../model/category"
+import {throttle} from "../../utils/utils";
 
 const service = new Service();
 Page({
@@ -8,11 +9,15 @@ Page({
         categoryList:[],
         serviceList:[],
         tabIndex:'',
-        categoryId:''
+        categoryId:'',
+        loading:true
     },
-    onLoad: function (options) {
-        this._getServiceList();
-        this._getCategoryList();
+    onLoad: async function (options) {
+        await this._getServiceList();
+        await this._getCategoryList();
+        this.setData({
+            loading:false
+        })
     },
     async _getServiceList(){
         const list = await service.getServiceList(this.data.tabIndex,this.data.categoryId);
@@ -32,19 +37,19 @@ Page({
         })
     },
 
-    handlerTabsChange:function (e){
+    handlerTabsChange:throttle(function (e){
         console.log(e);
         this.data.tabIndex = e.detail.index;
         this._refreshServiceList();
-    },
+    }),
 
-    handlerCategoryChange:function (e){
+    handlerCategoryChange:throttle(function (e){
         if (this.data.categoryId === e.currentTarget.dataset.id){
             return;
         }
         this.data.categoryId = e.currentTarget.dataset.id;
         this._refreshServiceList();
-    },
+    }),
     /**
      * 下拉刷新
      */

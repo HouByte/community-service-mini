@@ -1,0 +1,212 @@
+<!--
+此文件为开发者工具生成，生成时间: 2021/7/31 上午11:38:02
+使用方法：
+在 D:\Code\mini\housekeeping\pages\home\index.wxml 引入模板
+
+```
+<import src="index.skeleton.wxml"/>
+<template is="skeleton" wx-if="{{loading}}" />
+```
+
+在 D:\Code\mini\housekeeping\pages\home\index.wxss 中引入样式
+```
+@import "./index.skeleton.wxss";
+```
+
+更多详细信息可以参考文档：https://developers.weixin.qq.com/miniprogram/dev/devtools/skeleton.html
+-->
+<template name="skeleton">
+  <view class="sk-container">
+    <view class="container">
+      <view is="components/tabs/tabs">
+        <view class="tabs--container">
+          <view class="tabs--tabs">
+            <view class="tabs--tab-item">
+            <!--<view class="tabs--tab-label tabs--active-tab sk-transparent sk-text-14-2857-93 sk-text" data-index="0">-->
+              <view class="tabs--tab-label tabs--active-tab sk-transparent  sk-text" data-index="0">
+                全部服务
+              </view>
+              <view class="tabs--divider"></view>
+            </view>
+            <view class="tabs--tab-item">
+              <!-- sk-text-14-2857-291 -->
+              <view class="tabs--tab-label sk-transparent sk-text" data-index="1">
+                在提供
+              </view>
+            </view>
+            <view class="tabs--tab-item">
+              <!-- sk-text-14-2857-975 -->
+              <view class="tabs--tab-label sk-transparent sk-text" data-index="2">
+                正在找
+              </view>
+            </view>
+          </view>
+          <view>
+            <image style="width:100%;height:82px;" class="sk-image"></image>
+          </view>
+          <view class="tabs--tab-panel">
+            <view>
+              <view>
+                <view is="components/service-preview/service-preview">
+                  <view class="preview--container">
+                    <view class="preview--left">
+                      <view class="preview--type-tag sk-transparent sk-text-14-2857-897 sk-text">在提供</view>
+                      <image class="preview--cover-image sk-image"></image>
+                    </view>
+                    <view class="preview--right">
+                      <view class="preview--row">
+                        <view class="preview--service-name sk-transparent sk-text-14-2857-301 sk-text">缺少一名测试工程师</view>
+                        <view class="preview--category-tag">
+                          <view is="components/icon/icon">
+                            <view class="icon--iconfont icon--icon-biaoqian sk-pseudo sk-pseudo-circle" style="font-size:18px; color:#f27013;"></view>
+                          </view>
+                          <view class="preview--category-text sk-transparent sk-text-14-2857-168 sk-text">技术服务</view>
+                        </view>
+                      </view>
+                      <view class="preview--row">
+                        <view class="preview--publisher">
+                          <view class="preview--publisher-avatar">
+                            <image class="preview--publisher-avatar-image sk-image"></image>
+                          </view>
+                          <view class="preview--publisher-nickname sk-transparent sk-opacity">v</view>
+                        </view>
+                        <view class="preview--score sk-transparent sk-text-14-2857-989 sk-text">★ 0</view>
+                      </view>
+                      <view class="preview--row">
+                        <view class="preview--create-time sk-transparent sk-text-14-2857-415 sk-text">1627646143000</view>
+                      </view>
+                      <view class="preview--row preview--row-last">
+                        <view class="preview--price sk-transparent">
+                          <text class="preview--label sk-transparent sk-opacity">￥</text>12000</view>
+                        <view class="preview--sales sk-transparent sk-opacity">0</view>
+                      </view>
+                    </view>
+                  </view>
+                </view>
+              </view>
+              <view>
+                <view is="components/service-preview/service-preview">
+                  <view class="preview--container">
+                    <view class="preview--left">
+                      <view class="preview--type-tag sk-transparent sk-text-14-2857-916 sk-text">在提供</view>
+                      <image class="preview--cover-image sk-image"></image>
+                    </view>
+                    <view class="preview--right">
+                      <view class="preview--row">
+                        <view class="preview--service-name sk-transparent sk-text-14-2857-807 sk-text">缺少一名Java工程师</view>
+                        <view class="preview--category-tag">
+                          <view is="components/icon/icon">
+                            <view class="icon--iconfont icon--icon-biaoqian sk-pseudo sk-pseudo-circle" style="font-size:18px; color:#f27013;"></view>
+                          </view>
+                          <view class="preview--category-text sk-transparent sk-text-14-2857-728 sk-text">技术服务</view>
+                        </view>
+                      </view>
+                      <view class="preview--row">
+                        <view class="preview--publisher">
+                          <view class="preview--publisher-avatar">
+                            <image class="preview--publisher-avatar-image sk-image"></image>
+                          </view>
+                          <view class="preview--publisher-nickname sk-transparent sk-opacity">v</view>
+                        </view>
+                        <view class="preview--score sk-transparent sk-text-14-2857-512 sk-text">★ 0</view>
+                      </view>
+                      <view class="preview--row">
+                        <view class="preview--create-time sk-transparent sk-text-14-2857-835 sk-text">1627646143000</view>
+                      </view>
+                      <view class="preview--row preview--row-last">
+                        <view class="preview--price sk-transparent">
+                          <text class="preview--label sk-transparent sk-opacity">￥</text>12000</view>
+                        <view class="preview--sales sk-transparent sk-opacity">0</view>
+                      </view>
+                    </view>
+                  </view>
+                </view>
+              </view>
+              <view>
+                <view is="components/service-preview/service-preview">
+                  <view class="preview--container">
+                    <view class="preview--left">
+                      <view class="preview--type-tag sk-transparent sk-text-14-2857-371 sk-text">在提供</view>
+                      <image class="preview--cover-image sk-image"></image>
+                    </view>
+                    <view class="preview--right">
+                      <view class="preview--row">
+                        <view class="preview--service-name sk-transparent sk-text-14-2857-16 sk-text">缺少一名运维工程师</view>
+                        <view class="preview--category-tag">
+                          <view is="components/icon/icon">
+                            <view class="icon--iconfont icon--icon-biaoqian sk-pseudo sk-pseudo-circle" style="font-size:18px; color:#f27013;"></view>
+                          </view>
+                          <view class="preview--category-text sk-transparent sk-text-14-2857-479 sk-text">技术服务</view>
+                        </view>
+                      </view>
+                      <view class="preview--row">
+                        <view class="preview--publisher">
+                          <view class="preview--publisher-avatar">
+                            <image class="preview--publisher-avatar-image sk-image"></image>
+                          </view>
+                          <view class="preview--publisher-nickname sk-transparent sk-opacity">v</view>
+                        </view>
+                        <view class="preview--score sk-transparent sk-text-14-2857-833 sk-text">★ 0</view>
+                      </view>
+                      <view class="preview--row">
+                        <view class="preview--create-time sk-transparent sk-text-14-2857-63 sk-text">1627646143000</view>
+                      </view>
+                      <view class="preview--row preview--row-last">
+                        <view class="preview--price sk-transparent">
+                          <text class="preview--label sk-transparent sk-opacity">￥</text>12000</view>
+                        <view class="preview--sales sk-transparent sk-opacity">0</view>
+                      </view>
+                    </view>
+                  </view>
+                </view>
+              </view>
+              <view>
+                <view is="components/service-preview/service-preview">
+                  <view class="preview--container">
+                    <view class="preview--left">
+                      <view class="preview--type-tag sk-transparent sk-text-14-2857-452 sk-text">在提供</view>
+                      <image class="preview--cover-image sk-image"></image>
+                    </view>
+                    <view class="preview--right">
+                      <view class="preview--row">
+                        <view class="preview--service-name sk-transparent sk-text-14-2857-386 sk-text">缺少一名数据库工程师</view>
+                        <view class="preview--category-tag">
+                          <view is="components/icon/icon">
+                            <view class="icon--iconfont icon--icon-biaoqian sk-pseudo sk-pseudo-circle" style="font-size:18px; color:#f27013;"></view>
+                          </view>
+                          <view class="preview--category-text sk-transparent sk-text-14-2857-798 sk-text">技术服务</view>
+                        </view>
+                      </view>
+                      <view class="preview--row">
+                        <view class="preview--publisher">
+                          <view class="preview--publisher-avatar">
+                            <image class="preview--publisher-avatar-image sk-image"></image>
+                          </view>
+                          <view class="preview--publisher-nickname sk-transparent sk-opacity">v</view>
+                        </view>
+                        <view class="preview--score sk-transparent sk-text-14-2857-569 sk-text">★ 0</view>
+                      </view>
+                      <view class="preview--row">
+                        <view class="preview--create-time sk-transparent sk-text-14-2857-24 sk-text">1627646143000</view>
+                      </view>
+                      <view class="preview--row preview--row-last">
+                        <view class="preview--price sk-transparent">
+                          <text class="preview--label sk-transparent sk-opacity">￥</text>12000</view>
+                        <view class="preview--sales sk-transparent sk-opacity">0</view>
+                      </view>
+                    </view>
+                  </view>
+                </view>
+              </view>
+              <view>
+                <view is="components/service-preview/service-preview">
+                  <view class="preview--container"></view>
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</template>

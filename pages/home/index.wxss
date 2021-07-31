@@ -1,3 +1,4 @@
+@import "./index.skeleton.wxss";
 .container {
     height: 100%;
 }
