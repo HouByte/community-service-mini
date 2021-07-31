@@ -45,6 +45,7 @@
   "style": "v2",
   "sitemapLocation": "sitemap.json",
   "usingComponents": {
-    "i-icon": "/components/icon/icon"
+    "i-icon": "/components/icon/icon",
+    "i-show-status": "/components/show-status/show-status"
   }
 }
