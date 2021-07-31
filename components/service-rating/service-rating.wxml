@@ -1,0 +1,21 @@
+<view class="container">
+    <view class="row">
+        <view class="author">
+            <i-avatar size="40" shape="circle" src="{{rating.author.avatarUrl}}" text="{{rating.author.nickname}}"></i-avatar>
+        </view>
+        <view class="create-time">{{rating.created}}</view>
+    </view>
+    <view class="score">
+        <text>评分:</text>
+        <i-rating count="5" selected="{{rating.score}}" size="36"></i-rating>
+    </view>
+    <view class="content">
+        {{rating.content}}
+    </view>
+    <view wx:if="{{rating.illustration.length}}" class="illustration">
+        <block wx:for="{{rating.illustration}}" wx:key="index">
+            <image class="illustration-image" src="{{item}}" data-index="{{index}}" bind:tap="handlePreview"></image>
+        </block>
+    </view>
+
+</view>

@@ -49,6 +49,8 @@
   "usingComponents": {
     "i-icon": "/components/icon/icon",
     "i-show-status": "/components/show-status/show-status",
-    "i-avatar": "/components/avatar/avatar"
+    "i-avatar": "/components/avatar/avatar",
+    "i-rating": "/components/rating/rating",
+    "i-service-rating": "/components/service-rating/service-rating"
   }
 }

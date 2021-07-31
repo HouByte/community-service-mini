@@ -1,12 +1,10 @@
 import Http from  "../utils/http";
+import Base from "./base";
 
 
-class Service {
+class Service extends Base{
 
-    pageNum=1;
-    pageSize=5;
-    data=[];
-    hasMoreData = true;
+
     /**
      * 分页获取服务列表
      * @param pageNum 页码
@@ -26,26 +24,18 @@ class Service {
             categoryId:categoryId||''
         })
 
-        console.log(this.pageNum,serviceList)
         //合并
-        this.data = this.data.concat(serviceList.list);
-        // 判断是否当前已经是最后一页了
-        this.hasMoreData = !(this.pageNum ===serviceList.lastPage);
-        this.pageNum ++;
+        // this.data = this.data.concat(serviceList.list);
+        // // 判断是否当前已经是最后一页了
+        // this.hasMoreData = !(this.pageNum ===serviceList.lastPage);
+        // this.pageNum ++;
 
-        return this.data;
+        return this.handleData(serviceList);
     }
 
     static async getServiceById(id){
         return  await Http.getFrom('6104d84b311c491a73d58adc?/service/id')
 
-    }
-    reset(){
-        this.pageNum=1;
-        this.pageSize=5;
-        this.data=[];
-        this.hasMoreData = true;
-        return this;
     }
 
 
