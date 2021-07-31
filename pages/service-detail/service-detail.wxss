@@ -111,12 +111,6 @@
     z-index: 2;
 }
 
-.action-bar-item {
-    display: flex;
-    align-items: center;
-    box-sizing: border-box;
-    justify-content: space-between;
-}
 
 .sales-volume{
     margin-left: 30rpx;

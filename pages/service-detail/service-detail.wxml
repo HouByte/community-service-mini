@@ -48,5 +48,9 @@
             <i-show-status show content="暂时还没有评价" top="150"></i-show-status>
         </view>
     </view>
-    <view class="action-bar"></view>
+    <view class="action-bar">
+        <i-publisher-action service="{{service}}" wx:if="{{isPublisher}}"></i-publisher-action>
+        <i-consumer-action service="{{service}}" wx:if="{{!isPublisher}}"></i-consumer-action>
+        <i-safe-area area="bottom"></i-safe-area>
+    </view>
 </view>
