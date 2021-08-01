@@ -1,11 +1,13 @@
 import ApiConfig from "../config/api";
 import exceptionMessage from "../config/exception-message";
 import wxToPromise from "./wx";
+import cache from "../enum/cache";
 
 class Http{
     //url:baseUrl+path
     //
-    static async request({uri,data=null,header={},method='GET'}){
+    static async request({uri,data=null,header={},method='GET',refetch=true}){
+        header['token']=wx.getStorageSync(cache.TOKEN);
        const res = await wxToPromise('request',{
             url:ApiConfig.baseUrl+uri,
             data,
@@ -23,16 +25,33 @@ class Http{
 
         //请求失败
         if (res.statusCode === 401){
-            //todo 令牌相关操作
-            return ;
+            //令牌相关操作
+            if (res.data.code === responseCode.NOT_TOKEN){
+                wx.navigateTo({
+                    url:'/pages/login/index'
+                })
+                throw Error('请求未携带令牌');
+            }
+
+            if (refetch){
+                return Http._refetch({uri,data,header,method});
+            }
+
         }
 
+        let errorCode;
+        let errorMsg;
         if (res.statusCode === 200){
             const resp = res.data;
-            this._showError(resp.code,resp.msg);
+            errorCode = resp.code;
+            errorMsg = resp.msg;
         } else {
-            this._showError(res.statusCode,res.errMsg);
+            errorCode = res.statusCode;
+            errorMsg = res.errMsg;
         }
+
+        this._showError(errorCode,errorMsg);
+        throw Error(errorMsg);
     }
 
     static async get(uri,data=null,header={}){
@@ -59,12 +78,16 @@ class Http{
 
         const errorMsg = exceptionMessage[errorCode];
         let title = errorMsg||message||'未知异常';
-        typeof title === 'object' ? Object.values(title).join(','):title;
         wx.showToast({
             title,
             icon:'none',
             duration:3000
         })
+    }
+
+    static async _refetch(data){
+        data.refetch = false;
+        return await Http.request(data);
     }
 }
 

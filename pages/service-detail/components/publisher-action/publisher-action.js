@@ -15,10 +15,10 @@ Component({
         handleUpdateStatus:function (e){
             console.log(e);
             const action = getDataSet(e,"action");
-
+            this.triggerEvent('update',{action})
         },
         handleEditService:function (e){
-            console.log(e)
+            this.triggerEvent('edit')
         }
     }
 });

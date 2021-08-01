@@ -10,10 +10,10 @@ Component({
     },
     methods: {
         handleChat:function (e){
-            console.log(e);
+            this.triggerEvent('chat')
         },
         handleOrder:function (e){
-            console.log(e);
+            this.triggerEvent('order')
         }
     }
 });

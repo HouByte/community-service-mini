@@ -1,6 +1,6 @@
 import Service from "../../model/service"
 import Category from "../../model/category"
-import {getDataSet, throttle} from "../../utils/utils";
+import {getDataSet, getEventParam, throttle} from "../../utils/utils";
 
 const service = new Service();
 Page({
@@ -39,7 +39,7 @@ Page({
 
     handlerTabsChange:throttle(function (e){
         console.log(e);
-        this.data.tabIndex = e.detail.index;
+        this.data.tabIndex = getEventParam(e,"index");
         this._refreshServiceList();
     }),
 

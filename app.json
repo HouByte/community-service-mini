@@ -4,7 +4,11 @@
     "pages/message/index",
     "pages/my/index",
     "pages/publish/index",
-    "pages/service-detail/service-detail"
+    "pages/service-detail/service-detail",
+    "pages/login/index",
+    "pages/service-edit/index",
+    "pages/conversation/index",
+    "pages/order/index"
   ],
   "window":{
     "backgroundTextStyle":"dark",

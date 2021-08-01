@@ -38,6 +38,10 @@ class Service extends Base{
 
     }
 
+    static updateServiceStatus(id,action){
+        return {}
+    }
+
 
 }
 
