@@ -8,7 +8,8 @@
     "pages/login/index",
     "pages/service-edit/index",
     "pages/conversation/index",
-    "pages/order/index"
+    "pages/order/index",
+    "pages/order-success/index"
   ],
   "window":{
     "backgroundTextStyle":"dark",
@@ -56,6 +57,15 @@
     "i-avatar": "/components/avatar/avatar",
     "i-rating": "/components/rating/rating",
     "i-service-rating": "/components/service-rating/service-rating",
-    "i-safe-area": "/components/safe-area/safe-area"
+    "i-safe-area": "/components/safe-area/safe-area",
+    "i-button": "/components/button/button",
+    "i-tabs": "/components/tabs/tabs",
+    "i-service-preview": "/components/service-preview/service-preview",
+
+    "mp-msg": "weui-miniprogram/msg/msg"
+
+  },
+  "useExtendedLib": {
+    "weui": true
   }
 }
