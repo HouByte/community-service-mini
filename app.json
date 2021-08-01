@@ -62,7 +62,9 @@
     "i-tabs": "/components/tabs/tabs",
     "i-service-preview": "/components/service-preview/service-preview",
 
-    "mp-msg": "weui-miniprogram/msg/msg"
+    "mp-msg": "weui-miniprogram/msg/msg",
+    "mp-form": "weui-miniprogram/form/form",
+    "mp-cell": "weui-miniprogram/cell/cell"
 
   },
   "useExtendedLib": {
