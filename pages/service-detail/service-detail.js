@@ -56,7 +56,7 @@ Page({
     handleEditService:function (){
         const service = JSON.stringify(this.data.service);
         wx.navigateTo({
-            url:'/pages/service-edit/index?service=${service}'
+            url:`/pages/service-edit/index?service=${service}`
         })
 
     },
@@ -65,7 +65,7 @@ Page({
         const targetUserId = this.data.service.publisher.id;
         const service = JSON.stringify(this.data.service);
         wx.navigateTo({
-            url:'/pages/conversation/index?id=${targetUserId}&service=${service}'
+            url:`/pages/conversation/index?id=${targetUserId}&service=${service}`
         })
     },
     handleOrder:function (){
@@ -83,7 +83,7 @@ Page({
         }
         const service = JSON.stringify(this.data.service);
         wx.navigateTo({
-            url:'/pages/order/index?service=${service}'
+            url:`/pages/order/index?service=${service}`
         })
     },
     _generateModalContent(action){
