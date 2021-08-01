@@ -1,3 +1,4 @@
+@import "./service-detail.skeleton.wxss";
 .container {
     font-size: 28rpx;
     box-sizing: border-box;
@@ -114,4 +115,8 @@
 
 .sales-volume{
     margin-left: 30rpx;
+}
+
+.inner-container{
+    padding-bottom: 250rpx;
 }

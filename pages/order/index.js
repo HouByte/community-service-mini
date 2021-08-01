@@ -1,4 +1,4 @@
-import Order from "../../model/Order";
+import Order from "../../model/order";
 
 Page({
     data: {
@@ -45,9 +45,6 @@ Page({
             Order.createOrder();
             setTimeout(()=>{
                 wx.hideLoading();
-                // wx.switchTab({
-                //     url:'/pages/home/index'
-                // })
                 wx.redirectTo({
                     url:'/pages/order-success/index'
                 })

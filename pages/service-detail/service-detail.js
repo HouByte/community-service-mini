@@ -14,7 +14,8 @@ Page({
         isPublisher:false,
         ratingList:[],
         serviceTypeEnum:serviceType,
-        serviceStatusEnum:serviceStatus
+        serviceStatusEnum:serviceStatus,
+        loading:true
     },
     onLoad:async function (options) {
         console.log(options.id);
@@ -22,6 +23,9 @@ Page({
         await this._getServiceById();
         this._checkRole();
         await this._getServiceRatingList();
+        this.setData({
+            loading:false
+        })
     },
     async _getServiceById(){
         const service = await Service.getServiceById(this.data.serviceId);
@@ -31,6 +35,9 @@ Page({
         })
     },
     async _getServiceRatingList(){
+        if (this.data.service.type === serviceType.SEEK){
+            return
+        }
         const ratingList = await rating.reset().getServiceRatingList(this.data.serviceId);
         console.log("getServiceById",ratingList)
         this.setData({
@@ -108,5 +115,14 @@ Page({
                 isPublisher:true
             })
         }
+    },
+    async onReachBottom() {
+        if (!rating.hasMoreData){
+            return
+        }
+        const ratingList = await rating.getServiceRatingList(this.data.serviceId);
+        this.setData({
+            ratingList
+        })
     }
 });

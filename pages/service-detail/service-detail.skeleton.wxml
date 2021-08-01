@@ -1,0 +1,196 @@
+<!--
+此文件为开发者工具生成，生成时间: 2021/8/1 下午4:44:19
+使用方法：
+在 D:\Code\mini\housekeeping\pages\service-detail\service-detail.wxml 引入模板
+
+```
+<import src="service-detail.skeleton.wxml"/>
+<template is="skeleton" wx-if="{{loading}}" />
+```
+
+在 D:\Code\mini\housekeeping\pages\service-detail\service-detail.wxss 中引入样式
+```
+@import "./service-detail.skeleton.wxss";
+```
+
+更多详细信息可以参考文档：https://developers.weixin.qq.com/miniprogram/dev/devtools/skeleton.html
+-->
+<template name="skeleton">
+  <view class="sk-container">
+    <view class="container">
+      <view class="inner-container">
+        <view class="service-info">
+          <view class="cover-image">
+            <image class="sk-image"></image>
+          </view>
+          <view class="row">
+            <view class="title sk-transparent sk-text-18-7500-107 sk-text">缺少一名测试工程师</view>
+            <view class="category">
+              <view is="components/icon/icon">
+                <view class="icon--iconfont icon--icon-biaoqian sk-pseudo sk-pseudo-circle" style="font-size:18px; color:#f27013;"></view>
+              </view>
+              <view class="category-text sk-transparent sk-text-18-7500-433 sk-text">技术服务</view>
+            </view>
+          </view>
+          <view class="row">
+            <view is="components/avatar/avatar">
+              <view class="avatar--container">
+                <view class="avatar--avatar">
+                  <image class="avatar--avatar-image sk-image" style="width: 33px;height: 33px;border-radius: 50%"></image>
+                </view>
+                <view class="avatar--nickname sk-transparent sk-opacity" style="font-size: 15px">v
+                </view>
+              </view>
+            </view>
+            <view class="score sk-transparent sk-text-18-7500-217 sk-text">★ 0</view>
+          </view>
+          <view class="row">
+            <view class="create-time sk-transparent sk-text-18-7500-439 sk-text">1627646143000</view>
+          </view>
+          <view class="row">
+            <view class="price sk-transparent">
+              <text class="label sk-transparent sk-opacity">￥</text>12000
+            </view>
+            <view class="sales-volume sk-transparent sk-text-18-7500-918 sk-text">已售:0</view>
+          </view>
+          <view class="row">
+            <view class="description"></view>
+          </view>
+        </view>
+        <view class="service-rating">
+          <view class="service-rating-title sk-transparent sk-text-18-7500-107 sk-text" style="border: none;">历史评价</view>
+          <view class="service-rating-list">
+            <view class="rating-item" style="border: none;">
+              <view is="components/service-rating/service-rating">
+                <view class="rating--container">
+                  <view class="rating--row">
+                    <view class="rating--author">
+                      <view is="components/avatar/avatar">
+                        <view class="avatar--container">
+                          <view class="avatar--avatar">
+                            <image class="avatar--avatar-image sk-image" style="width: 22px;height: 22px;border-radius: 50%"></image>
+                          </view>
+                          <view class="avatar--nickname sk-transparent sk-text-18-7500-34 sk-text" style="font-size: 15px">yjj
+                          </view>
+                        </view>
+                      </view>
+                    </view>
+                    <view class="rating--create-time sk-transparent sk-text-18-7500-132 sk-text">1627646143000</view>
+                  </view>
+                  <view class="rating--score">
+                    <text class="sk-transparent sk-text-18-7500-668 sk-text">评分:</text>
+                    <view is="components/rating/rating">
+                      <view class="rating-rating--container">
+                        <view class="rating-rating--item">
+                          <view is="components/icon/icon">
+                            <view class="icon--iconfont icon--icon-star sk-pseudo sk-pseudo-circle" style="font-size:19px; color:#f3d066;"></view>
+                          </view>
+                        </view>
+                        <view class="rating-rating--item">
+                          <view is="components/icon/icon">
+                            <view class="icon--iconfont icon--icon-star sk-pseudo sk-pseudo-circle" style="font-size:19px; color:#888888;"></view>
+                          </view>
+                        </view>
+                        <view class="rating-rating--item">
+                          <view is="components/icon/icon">
+                            <view class="icon--iconfont icon--icon-star sk-pseudo sk-pseudo-circle" style="font-size:19px; color:#888888;"></view>
+                          </view>
+                        </view>
+                        <view class="rating-rating--item">
+                          <view is="components/icon/icon">
+                            <view class="icon--iconfont icon--icon-star sk-pseudo sk-pseudo-circle" style="font-size:19px; color:#888888;"></view>
+                          </view>
+                        </view>
+                        <view class="rating-rating--item">
+                          <view is="components/icon/icon">
+                            <view class="icon--iconfont icon--icon-star sk-pseudo sk-pseudo-circle" style="font-size:19px; color:#888888;"></view>
+                          </view>
+                        </view>
+                      </view>
+                    </view>
+                  </view>
+                  <view class="rating--content sk-transparent sk-text-18-7500-113 sk-text">
+                    牛，跟新的一样1。
+                  </view>
+                  <view class="rating--illustration">
+                    <image class="rating--illustration-image sk-image" data-index="0"></image>
+                    <image class="rating--illustration-image sk-image" data-index="1"></image>
+                  </view>
+                </view>
+              </view>
+            </view>
+            <view class="rating-item" style="border: none;">
+              <view is="components/service-rating/service-rating">
+                <view class="rating--container">
+                  <view class="rating--row">
+                    <view class="rating--author">
+                      <view is="components/avatar/avatar">
+                        <view class="avatar--container">
+                          <view class="avatar--avatar">
+                            <image class="avatar--avatar-image sk-image" style="width: 22px;height: 22px;border-radius: 50%"></image>
+                          </view>
+                          <view class="avatar--nickname sk-transparent sk-text-18-7500-470 sk-text" style="font-size: 15px">yjj
+                          </view>
+                        </view>
+                      </view>
+                    </view>
+                    <view class="rating--create-time sk-transparent sk-text-18-7500-386 sk-text">1627646143000</view>
+                  </view>
+                  <view class="rating--score">
+                    <view is="components/rating/rating">
+                      <view class="rating-rating--container">
+                        <view class="rating-rating--item">
+                          <view is="components/icon/icon">
+                            <view class="icon--iconfont icon--icon-star sk-pseudo sk-pseudo-circle" style="font-size:19px; color:#f3d066;"></view>
+                          </view>
+                        </view>
+                        <view class="rating-rating--item">
+                          <view is="components/icon/icon">
+                            <view class="icon--iconfont icon--icon-star sk-pseudo sk-pseudo-circle" style="font-size:19px; color:#f3d066;"></view>
+                          </view>
+                        </view>
+                        <view class="rating-rating--item">
+                          <view is="components/icon/icon">
+                            <view class="icon--iconfont icon--icon-star sk-pseudo sk-pseudo-circle" style="font-size:19px; color:#f3d066;"></view>
+                          </view>
+                        </view>
+                        <view class="rating-rating--item">
+                          <view is="components/icon/icon">
+                            <view class="icon--iconfont icon--icon-star sk-pseudo sk-pseudo-circle" style="font-size:19px; color:#888888;"></view>
+                          </view>
+                        </view>
+                        <view class="rating-rating--item">
+                          <view is="components/icon/icon">
+                            <view class="icon--iconfont icon--icon-star sk-pseudo sk-pseudo-circle" style="font-size:19px; color:#888888;"></view>
+                          </view>
+                        </view>
+                      </view>
+                    </view>
+                  </view>
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+      <view class="action-bar" style="border: none;">
+        <view is="pages/service-detail/components/consumer-action/consumer-action">
+          <view class="action--action-bar-item">
+            <view is="components/button/button">
+              <view class="button--i-button-special sk-transparent" style="color:#333333;">
+                <view is="components/icon/icon" style="margin-right:5px">
+                  <view class="icon--iconfont icon--icon-telephone sk-pseudo sk-pseudo-circle" style="font-size:18px; color:#333333;"></view>
+                </view>联系对方</view>
+            </view>
+            <view is="components/button/button">
+              <view class="button--i-button button--shape-semicircle button--medium button--i-class sk-transparent sk-text-18-7500-72 sk-text" style="background-color:#f3d066;color:#333333;">立即预约</view>
+            </view>
+          </view>
+        </view>
+        <view is="components/safe-area/safe-area">
+          <view class="area--safe-area-bottom"></view>
+        </view>
+      </view>
+    </view>
+  </view>
+</template>
