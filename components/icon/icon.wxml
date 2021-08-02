@@ -1,2 +1,2 @@
-<view class="iconfont icon-{{name}}"
+<view class="iconfont icon-{{name}} shape"
         style="font-size:{{size}}rpx; color:{{color}};"></view>

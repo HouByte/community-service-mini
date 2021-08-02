@@ -1,0 +1,19 @@
+.container{
+    padding: 30rpx 0rpx 150rpx 0rpx;
+    background-color: #fff;
+}
+.picker-placeholder{
+    color: #808080;
+}
+
+.desc-textarea{
+    width: 100%;
+}
+
+.form-floor{
+    margin-top: 60rpx;
+    display: flex;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}

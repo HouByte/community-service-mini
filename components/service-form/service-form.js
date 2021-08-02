@@ -2,15 +2,16 @@ import serviceType from "../../enum/service-type";
 import {getDataSet, getEventParam} from "../../utils/utils";
 import Category from "../../model/category"
 
+const moment = require("../../lib/moment")
 Component({
     properties: {
         form: {
             type: Object,
             value: {
-                type: -1,
-                title: '',
+                type: null,
+                title: null,
                 categoryId: null,
-                coverImageId: null,
+                coverImage: null,
                 description: '',
                 designatedPlace: false,
                 beginDate: '',
@@ -43,43 +44,149 @@ Component({
             price: ''
         },
         categoryList: [],
-        categoryPickerIndex: null
+        categoryPickerIndex: null,
+        error:null,
+        rules: [
+            {
+                name: 'type',
+                rules: { required: true, message: '请指定服务类型' },
+            },
+            {
+                name: 'title',
+                rules: [
+                    { required: true, message: '服务标题内容不能为空' },
+                    { minlength: 5, message: '服务描述内容不能少于 5 个字' },
+                ],
+            },
+            {
+                name: 'categoryId',
+                rules: { required: true, message: '未指定服务所属分类' },
+            },
+            {
+                name: 'coverImageId',
+                rules: { required: true, message: '请上传封面图' },
+            },
+            {
+                name: 'description',
+                rules: [
+                    { required: true, message: '服务描述不能为空' },
+                    { minlength: 20, message: '服务描述内容不能少于 20 个字' },
+                ],
+            },
+            {
+                name: 'beginDate',
+                rules: [
+                    { required: true, message: '请指定服务有效日期开始时间' },
+                ],
+            },
+            {
+                name: 'endDate',
+                rules: [
+                    { required: true, message: '请指定服务有效日期结束时间' },
+                    {
+                        validator: function (rule, value, param, models) {
+                            if (moment(value).isSame(models.begin_date) || moment(value).isAfter(models.begin_date)) {
+                                return null
+                            }
+                            return '结束时间必须大于开始时间'
+                        }
+                    }
+                ],
+
+            },
+            {
+                name: 'price',
+                rules: [
+                    { required: true, message: '请指定服务价格' },
+                    {
+                        validator: function (rule, value, param, models) {
+                            const pattern = /(^[1-9]{1}[0-9]*$)|(^[0-9]*\.[0-9]{2}$)/
+                            const isNum = pattern.test(value);
+
+                            if (isNum) {
+                                return null
+                            }
+                            return '价格必须是数字'
+                        }
+                    },
+                    { min: 1, message: '天下没有免费的午餐' },
+                ],
+            },
+        ],
+        resetForm: true,
+        showForm: true,
+        serviceTypeEnum:serviceType
 
     },
-    lifetimes: {
-        attached() {
+    pageLifetimes:{
+        show(){
+            if (this.data.resetForm){
+                this._init();
+            }
+            this.data.resetForm = true
+        },
+        hide() {
+            if (this.data.resetForm){
+                this.setData({
+                    showForm:false
+                })
+            }
+        }
+    },
+    observers:{
+        form:function (newValue){
+            if (!newValue){
+                return;
+            }
             this._init();
         }
     },
+    // lifetimes: {
+    //     attached() {
+    //
+    //     }
+    // },
     methods: {
         async _init() {
-            console.log("11")
-            const typePickerIndex = this.data.typeList.findIndex(item => this.data.form.type === item.id)
-            console.log("22")
             const categoryList = await Category.getCategoryList();
             const categoryPickerIndex = categoryList.findIndex(item => this.data.form.categoryId === item.id);
-            console.log("categoryList ", categoryList)
+            const typePickerIndex = this.data.typeList.findIndex(item => this.data.form.type === item.id);
             this.setData({
                 typePickerIndex: typePickerIndex !== -1 ? typePickerIndex : null,
                 categoryList,
                 categoryPickerIndex: categoryPickerIndex !== -1 ? categoryPickerIndex : null,
+                files:this.data.form.coverImage ? [this.data.form.coverImage]:[],
                 formData: {
+                    id:this.data.form.id,
                     type: this.data.form.type,
                     title: this.data.form.title,
                     categoryId: this.data.form.categoryId,
-                    coverImageId: this.data.form.coverImageId,
+                    coverImageId: this.data.form.coverImage ? this.data.form.coverImage.id:null,
                     description: this.data.form.description,
                     designatedPlace: this.data.form.designatedPlace,
                     beginDate: this.data.form.beginDate,
                     endDate: this.data.form.endDate,
                     price: this.data.form.price
-                }
+                },
+                showForm:true
             });
 
 
         },
         submit(){
-            console.log("提交");
+            console.log(this.data.formData)
+            this.selectComponent('#form').validate((valid,errors)=>{
+                if (!valid){
+                    const errMsg = errors.map(error=>error.message);
+                    this.setData({
+                        error:errMsg.join(';')
+                    })
+                    console.log(this.data.error)
+                    return;
+                }
+                this.triggerEvent('submit', {formData:this.data.formData})
+            });
+
         },
         handleTypeChange(e) {
             console.log(e)
@@ -94,7 +201,6 @@ Component({
             const field = getDataSet(e, 'field')
 
             this.setData({
-                typePickerIndex: index,
                 [`formData.${field}`]: value
             });
         },
@@ -122,6 +228,12 @@ Component({
             });
 
             console.log(this.data.formData)
+        },
+        handleUploadSuccess:function (e){
+            console.log(e)
+        },
+        handleHidePage:function (){
+            this.data.resetForm = false
         }
     }
 });

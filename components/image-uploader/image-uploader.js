@@ -1,3 +1,6 @@
+import {getDataSet} from "../../utils/utils";
+import FileUploader from "../../utils/file-uploader";
+
 Component({
     properties: {
         // 默认展示图片的文件图片
@@ -41,7 +44,7 @@ Component({
                   key:index+'',
                   path:item.path,
                   status:this.data.uploadStatusEnum.SUCCESS,
-                  error:''
+                  error:null
               };
               _files.push(file);
           })
@@ -55,7 +58,109 @@ Component({
             ERROR:0,
             UPLOADING:1,
             SUCCESS:2
-        }
+        },
+        _files:[]
     },
-    methods: {}
+    methods: {
+        /**
+         * 图片预览
+         * @param e
+         */
+        handlePreview:function (e){
+            this.triggerEvent('hidepage');
+            const index = getDataSet(e,'index');
+            const  urls = this.data._files.map(item=>item.path);
+            wx.previewImage({
+                urls,
+                current:urls[index]
+            })
+        },
+        /**
+         * 删除操作
+         * @param e
+         */
+        handleDelete:function (e){
+            const index = getDataSet(e,'index');
+            const deteled = this.data._files.splice(index,1);
+            this.setData({
+                _files:this.data._files
+            })
+            this.triggerEvent('delete',{index,item:deteled[0]});
+        },
+        /**
+         * 选择图片处理
+         * @returns {Promise<void>}
+         */
+        handleChooseImage:async function (){
+            this.triggerEvent('hidepage');
+           const res = await wx.chooseImage({
+                count:this.data.maxCount,
+                sizeType:this.data.sizeType,
+                sourceType:this.data.sourceType
+
+            })
+
+
+
+            this.triggerEvent('chooce',{files:res.tempFiles})
+
+            //过滤文件
+            const  _files = await this._filesFilter(res.tempFiles)
+            this.setData({
+                _files
+            })
+
+            const uploadTask = _files.filter(item=>item.status === this.data.uploadStatusEnum.UPLOADING);
+           this._executeUpload(uploadTask);
+
+        },
+
+        /**
+         * 文件规则过滤
+         * @param files
+         * @private
+         */
+        _filesFilter(files){
+            const res = [];
+            files.forEach((item,index)=>{
+                let error = '';
+                if (item.size > (this.data.size * 1024 * 1024)){
+                    error = `图片大小不能超过${this.data.size}M`;
+                    this.triggerEvent('validatefail',{item,error});
+                }
+                const length = this.data._files.length;
+                res.push({
+                    id:null,
+                    key:index+length+'',
+                    path:item.path,
+                    status:error? this.data.uploadStatusEnum.ERROR:this.data.uploadStatusEnum.UPLOADING,
+                    error:error
+                })
+            })
+            return this.data._files.concat(res);
+        },
+        async _executeUpload(uploadTask){
+            const  success = [];
+            for (const file of uploadTask) {
+                try {
+                   const res = await FileUploader.upload(file.path,file.key);
+                   file.id = res[0].id;
+                   file.status = this.data.uploadStatusEnum.SUCCESS;
+                   this.data._file[file.key] = file;
+                   success.push(file);
+                }catch (e){
+                        file.status = this.data.uploadStatusEnum.ERROR;
+                    file.error = e.errMsg;
+                    this.triggerEvent('uploadfail',{file,errot:e})
+                }
+            }
+            this.setData({
+                _files:this.data._files
+            })
+            if (success.length){
+                this.triggerEvent('uploadsuccess',{file,success})
+            }
+        }
+
+    }
 });

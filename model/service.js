@@ -33,12 +33,42 @@ class Service extends Base{
         return this.handleData(serviceList);
     }
 
+    /**
+     * 获取指定id服务
+     * @param id
+     * @returns {Promise<*>}
+     */
     static async getServiceById(id){
         return  await Http.getFrom('6104d84b311c491a73d58adc?/service/id')
 
     }
 
+    /**
+     * 更新指定id服务暂停
+     * @param id
+     * @param action
+     * @returns {{}}
+     */
     static updateServiceStatus(id,action){
+        return {}
+    }
+
+    /**
+     * 发布服务
+     * @param formData
+     * @returns {{}}
+     */
+    static publishService(formData){
+        return {}
+    }
+
+    /**
+     * 编辑服务
+     * @param id 服务id
+     * @param formData 服务数据
+     * @returns {{}}
+     */
+    static editService(id,formData){
         return {}
     }
 
