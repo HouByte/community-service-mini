@@ -1,0 +1,23 @@
+{
+  "name": "housekeeping",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://gitee.com/Vincent-Vic/housekeeping-mini.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "save": "^2.4.0",
+    "tim-upload-plugin": "^1.0.3",
+    "tim-wx-sdk-ws": "^2.12.0"
+  }
+}

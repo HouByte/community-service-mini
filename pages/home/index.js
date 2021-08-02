@@ -1,6 +1,7 @@
 import Service from "../../model/service"
 import Category from "../../model/category"
 import {getDataSet, getEventParam, throttle} from "../../utils/utils";
+import Tim from "../../model/tim";
 
 const service = new Service();
 Page({
