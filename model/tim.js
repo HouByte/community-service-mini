@@ -1,11 +1,27 @@
 // 从v2.11.2起，SDK 支持了 WebSocket，推荐接入；v2.10.2及以下版本，使用 HTTP
 import TIM from 'tim-wx-sdk-ws';
 import TIMUploadPlugin from 'tim-upload-plugin';
-import TimConfig from "../config/tim"
-class Tim {
-    static  Instance = null;
-    _SDKInstance = null;
+import TimConfig from "../config/tim";
+import {genTestUserSig} from "../lib/tim/GenerateTestUserSig"
+import User from "./user";
 
+class Tim {
+    /**
+     *
+     * @type {Tim}
+     */
+    static  Instance = null;
+    /**
+     *
+     * @type {Tim}
+     */
+    _SDKInstance = null;
+    _nextReqMessageID = '';
+    isCompleted = false;
+
+    /**
+     * 构造函数
+     */
     constructor() {
         console.log(TimConfig.options)
         // 创建 SDK 实例，`TIM.create()`方法对于同一个 `SDKAppID` 只会返回同一份实例
@@ -18,17 +34,76 @@ class Tim {
         this._SDKInstance = tim;
     }
 
-    static getInstance(){
-        if (!this.Instance){
+    /**
+     * 单例获取实例
+     * @returns {null}
+     */
+    static getInstance() {
+        if (!this.Instance) {
             Tim.Instance = new Tim();
         }
 
         return Tim.Instance;
     }
 
-    getSdk(){
+    /**
+     * 获取tim对象
+     * @returns {null}
+     */
+    getSdk() {
         return this._SDKInstance;
     }
+
+    async getMessageList(targetUserId, count = 10) {
+        console.log("1", targetUserId)
+        if (this.isCompleted) {
+            return
+        }
+        console.log("2")
+        targetUserId = 'user1'
+        const res = await this._SDKInstance.getMessageList({
+            conversationID: `C2C${targetUserId}`,
+            nextReqMessageID: this._nextReqMessageID,
+            count: count > 15 ? 15 : count
+        })
+
+        console.log("3", res)
+        this._nextReqMessageID = res.data._nextReqMessageID;
+        this.isCompleted = res.data.isCompleted;
+        this._messageList = res.data.messageList;
+        console.log("4")
+        return this._messageList;
+    }
+
+    reset() {
+        this._nextReqMessageID = '';
+        this.isCompleted = false;
+        this._messageList = [];
+        return this;
+    }
+
+    async timLogin() {
+        const userInfo = await User.getUserInfoByLocal();
+        const userId = userInfo.id.toString();
+        const textUserSig = genTestUserSig(userId)
+        this._SDKInstance.login({
+            userID: userId,
+            userSig: textUserSig.userSig
+        })
+        return this;
+    }
+
+    timLogout() {
+        this._SDKInstance.timLogout();
+    }
+
+    async setMessageRead(targetUserId) {
+        const res = await this._SDKInstance.setMessageRead({
+            conversationID: `C2C${targetUserId}`,
+        });
+        return res.data;
+    }
+
 }
 
 export default Tim;

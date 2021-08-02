@@ -1,9 +1,19 @@
 import cache from "../../enum/cache";
+import {createStoreBindings} from "mobx-miniprogram-bindings";
+import {timStore} from "../../store/tim";
 
 Page({
     data: {},
     onLoad: function (options) {
-
+        //全局状态绑定
+        this.storeBindings = createStoreBindings(this,{
+            store:timStore,
+            fields:['sdkReady'],
+            actions: {timLogin:'login'}
+        })
+    },
+    onUnload() {
+        this.storeBindings.destroyStoreBindings();
     },
     handleLogin:async function (){
        const res = await wx.getUserProfile({
@@ -18,13 +28,16 @@ Page({
 
         //登入操作
 
+
+        res.userInfo.id = 1;//res.userInfo.nickName.trim();
         //设置缓存
-        wx.setStorageSync(cache.USER_INFO,res.userInfo);
+        await wx.setStorageSync(cache.USER_INFO,res.userInfo);
         setTimeout((res)=>{
             wx.hideLoading();
         },2000)
         console.log(res);
-
+        //sdk登入
+        this.timLogin();
         //通知页面事件
         const events = this.getOpenerEventChannel();
         events.emit('login');

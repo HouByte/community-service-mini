@@ -2,6 +2,8 @@ import ApiConfig from "../config/api";
 import exceptionMessage from "../config/exception-message";
 import wxToPromise from "./wx";
 import cache from "../enum/cache";
+import {createStoreBindings} from "mobx-miniprogram-bindings";
+import {timStore} from "../store/tim";
 
 class Http{
     //url:baseUrl+path
@@ -25,8 +27,17 @@ class Http{
 
         //请求失败
         if (res.statusCode === 401){
+            //全局状态绑定
+            this.storeBindings = createStoreBindings(this,{
+                store:timStore,
+                fields:['sdkReady'],
+                actions:{timLogout:'logout'}
+            })
             //令牌相关操作
             if (res.data.code === responseCode.NOT_TOKEN){
+                if (this.sdkReady){
+                    this.timLogout();
+                }
                 wx.navigateTo({
                     url:'/pages/login/index'
                 })
@@ -35,6 +46,10 @@ class Http{
 
             if (refetch){
                 return Http._refetch({uri,data,header,method});
+            }
+
+            if (this.sdkReady){
+                this.timLogout();
             }
 
         }
