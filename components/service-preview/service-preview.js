@@ -7,7 +7,9 @@ Component({
         }
     },
     data: {
-        serviceTypeEnum:serviceType
+        serviceTypeEnum:serviceType,
     },
-    methods: {}
+    methods: {
+
+    }
 });

@@ -21,7 +21,7 @@
             <view class="score" wx:if="{{service.type === serviceTypeEnum.PROVIDE}}">★ {{service.score}}</view>
         </view>
         <view class="row">
-            <view class="create-time">{{service.created}}</view>
+            <view class="create-time">{{service.beginDate}} ~ {{service.endDate}}</view>
         </view>
         <view class="row row-last">
             <view class="price"><text class="label">￥</text>{{service.price}}</view>

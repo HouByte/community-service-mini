@@ -104,6 +104,42 @@ class Tim {
         return res.data;
     }
 
+    createMessage(type,content,targetUsserId,extension=null){
+        let message
+        const params = {
+            to:targetUsserId,
+            conversationType:TIM.TYPES.CONV_C2C,
+            payload:null
+        }
+
+        switch (type){
+            case TIM.TYPES.MSG_TEXT:
+                params.payload = {text:content}
+                message = this._SDKInstance.createTextMessage(params);
+                break;
+            case TIM.TYPES.MSG_IMAGE:
+                params.payload = {file:content}
+                message = this._SDKInstance.createImageMessage(params);
+                break;
+            case TIM.TYPES.MSG_CUSTOM:
+                params.payload = {
+                    data:'service',
+                    text:JSON.stringify(content),
+                    extension
+                }
+                message = this._SDKInstance.createCustomMessage(params);
+                break;
+            default:
+                throw Error('未知消息类型')
+        }
+
+        return message;
+    }
+
+    async sendMessage(message) {
+        const res = await this._SDKInstance.sendMessage(message);
+        return res.data
+    }
 }
 
 export default Tim;

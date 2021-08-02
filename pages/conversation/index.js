@@ -3,7 +3,10 @@ import TIM from "tim-wx-sdk-ws"
 import {createStoreBindings} from "mobx-miniprogram-bindings";
 import {timStore} from "../../store/tim";
 Page({
-    data: {},
+    data: {
+        targetUserId:null,
+        service:null
+    },
     onLoad: function (options) {
         const userId = 21000;
 
@@ -11,20 +14,28 @@ Page({
         //全局状态绑定
         this.storeBindings = createStoreBindings(this,{
             store:timStore,
-            fields:['sdkReady','messageList'],
-            actions:['getMessageList','setTargetUserId']
+            fields:['sdkReady']
         })
-        this.setTargetUserId('user1');
-        const messageList = this.getMessageList();
-        console.log("msg list ",messageList)
-        // Tim.getInstance().timLogin();
-        // Tim.getInstance().getSdk().on(TIM.EVENT.SDK_READY,async function (){
-        //     const res = Tim.getInstance().getMessageList(userId);
-        //     console.log("tim",res);
-        // })
+
+        const service = JSON.parse(options.service);
+        this.setData({
+            targetUserId:options.id,
+            service
+        })
 
     },
     onUnload() {
         this.storeBindings.destroyStoreBindings();
     },
+    handleRefresh:function (){
+        wx.navigateTo({
+            url:'/pages/login/index'
+        })
+    },
+    handleSendMessage:function (e){
+        console.log(e);
+        const {type,content} = e.detail;
+        const message = Tim.getInstance().createMessage(type,content,this.data.targetUserId)
+        Tim.getInstance().sendMessage(message);
+    }
 });
