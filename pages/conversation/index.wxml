@@ -1,9 +1,7 @@
-<view class="container" wx:if="{{sdkReady}}">
-<!--    消息列表-->
-    <i-conversation-window targetUserId="{{targetUserId}}" service="{{service}}" bind:sendmessage="handleSendMessage"></i-conversation-window>
-</view>
-<view wx:else>
-    <i-show-status show content="会话加载失败~~~">
-        <i-button shape="semicircle" bind:tap="handleRefresh">点击刷新</i-button>
+<view class="container" >
+    <!--    消息列表-->
+    <i-conversation-window wx:if="{{sdkReady}}" targetUserId="{{targetUserId}}" service="{{service}}" bind:sendmessage="handleSendMessage"></i-conversation-window>
+    <i-show-status wx:else show top="500" content="会话加载失败~~~">
+        <i-button shape="semicircle" bind:tap="handleRefresh" fontColor="#333333">点击刷新</i-button>
     </i-show-status>
 </view>

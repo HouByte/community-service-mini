@@ -54,7 +54,6 @@ export const timStore = observable({
         if (currentConversationMessage.length){
             this.messageList = this.messageList.concat(currentConversationMessage);
             this.intoView = this.messageList.length -1;
-            await Tim.getInstance().setMessageRead(this._targetUserId);
         }
     },
     setTargetUserId:action(function (targetUserId){
@@ -101,6 +100,13 @@ export const timStore = observable({
          * 3. 想把响应式的对象数组变成普通数组，可以调用slice()函数遍历所有对象元素生成一个新的普通数组
          */
         this.messageList = messageList.concat(this.messageList.slice());
+    }),
+
+    resetMessage:action(function (){
+        this.messageList = [];
+        this.intoView = 0;
+        this._targetUserId = null
+        Tim.getInstance().isCompleted = false;
     }),
 
     async _getConversationList(){

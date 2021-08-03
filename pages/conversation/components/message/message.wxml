@@ -2,8 +2,7 @@
     <view class="time">{{_message.time}}</view>
     <view class="message-area" style="{{_message.flow === flowEnum.IN?'':'flex-direction: row-reverse;'}}">
         <view class="avatar" >
-<!--            <image class="avatar-image" src="{{_message.avatar}}"></image>-->
-            <image class="avatar-image" src="http://s.bugio.cn/img/qq.jpg"></image>
+            <image class="avatar-image" src="{{_message.avatar}}"></image>
         </view>
 
         <view class="content" style="background-color: {{_message.flow === flowEnum.IN?'#4fc3f7':'#F3D066'}};">

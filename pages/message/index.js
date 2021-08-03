@@ -6,7 +6,7 @@ import {setTabBarBadge} from "../../utils/wx";
 
 Page({
     data: {
-
+      updateConversationList:false
     },
     onLoad: function (options) {
         //全局状态绑定
@@ -20,7 +20,6 @@ Page({
         this.storeBindings.destroyStoreBindings();
     },
     async onShow() {
-        console.log("show")
         if (!this.data.sdkReady){
             const userInfo = await wx.getStorageSync("user-info");
             if (!userInfo){ //未登入情况
@@ -32,7 +31,10 @@ Page({
             }
 
         }
-        this.getConversationList();
+        if (this.data.updateConversationList){
+            this.getConversationList();
+            this.data.updateConversationList = false;
+        }
         const data = wx.getStorageSync(cache.UNREAD_COUNT);
         await setTabBarBadge(data.index, data.count)
     },
@@ -47,9 +49,15 @@ Page({
         }
     },
     handleSelect:function (e){
+        this.data.updateConversationList = true;
         const targetUserId = getDataSet(e,'userid');
         wx.navigateTo({
-            url:`/pages/conversation/index?id=${targetUserId}`
+            url:`/pages/conversation/index?id=${targetUserId}`,
+            events:{
+                sendMessage: ()=>{
+                    this.data.updateConversationList = false;
+                }
+            }
         })
     }
 });

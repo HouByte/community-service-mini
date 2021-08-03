@@ -12,7 +12,7 @@ Page({
         this.storeBindings = createStoreBindings(this,{
             store:timStore,
             fields:['sdkReady'],
-            actions:['sendMessages']
+            actions:['sendMessages','resetMessage']
         })
 
         if (!options.id){
@@ -29,6 +29,7 @@ Page({
 
     },
     onUnload() {
+        this.resetMessage();
         this.storeBindings.destroyStoreBindings();
     },
     handleRefresh:async function (){
@@ -43,6 +44,7 @@ Page({
     },
     handleSendMessage:function (e){
         const {type,content} = e.detail;
-        this.sendMessages(type,content,this.data.targetUserId)
+        this.sendMessages(type,content,this.data.targetUserId);
+        this.getOpenerEventChannel().emit("sendMessage");
     }
 });

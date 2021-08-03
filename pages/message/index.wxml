@@ -1,7 +1,7 @@
 <view class="container">
     <block wx:if="{{sdkReady}}">
         <block wx:if="{{!conversationList.length}}">
-            <i-show-status show content="暂时没有会话" ></i-show-status>
+            <i-show-status show top="500" content="暂时没有会话" ></i-show-status>
         </block>
         <block wx:else>
 
@@ -14,8 +14,8 @@
         </block>
     </block>
     <view wx:else>
-        <i-show-status show content="会话加载失败~~~">
-            <i-button shape="semicircle" bind:tap="handleRefresh">点击刷新</i-button>
+        <i-show-status show top="500" content="会话加载失败~~~">
+            <i-button shape="semicircle" bind:tap="handleRefresh" fontColor="#333333">点击刷新</i-button>
         </i-show-status>
     </view>
 </view>
