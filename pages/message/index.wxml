@@ -7,7 +7,7 @@
 
             <view class="coversation-item" wx:for="{{conversationList}}" wx:key="index">
                 <i-coversation-preview user="{{item.userProfile}}" lastMessage="{{item.lastMessage}}"
-                      unreadCount="item.unreadCount" bind:tap="handleSelect" data-userId="{{item.userProfile.userID}}"
+                                       unreadCount="{{item.unreadCount}}" bind:tap="handleSelect" data-userId="{{item.userProfile.userID}}"
                 >
                 </i-coversation-preview>
             </view>

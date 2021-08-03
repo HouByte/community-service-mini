@@ -63,6 +63,7 @@
     "i-tabs": "/components/tabs/tabs",
     "i-service-preview": "/components/service-preview/service-preview",
     "i-image-uploader": "/components/image-uploader/image-uploader",
+    "i-badge": "/components/badge/badge",
 
     "mp-msg": "weui-miniprogram/msg/msg",
     "mp-form": "weui-miniprogram/form/form",
