@@ -23,7 +23,6 @@ class Tim {
      * 构造函数
      */
     constructor() {
-        console.log(TimConfig.options)
         // 创建 SDK 实例，`TIM.create()`方法对于同一个 `SDKAppID` 只会返回同一份实例
         let tim = TIM.create(TimConfig.options); // SDK 实例通常用 tim 表示
         // 设置 SDK 日志输出级别，详细分级请参见 <a href="https://web.sdk.qcloud.com/im/doc/zh-cn//SDK.html#setLogLevel">setLogLevel 接口的说明</a>
@@ -46,6 +45,21 @@ class Tim {
         return Tim.Instance;
     }
 
+    async getUserProfile(targetUerId){
+        const res = await this._SDKInstance.getUserProfile({
+            userIDList:[targetUerId]
+        });
+        return res.data;
+    }
+
+    async updateUserProfile(userInfo){
+        await this._SDKInstance.updateMyProfile({
+            nick:userInfo.nickName,
+            avatar:userInfo.avatarUrl,
+            gender:userInfo.gender === 1 ? TIM.TYPES.GENDER_MALE : TIM.TYPES.GENDER_FEMALE
+        })
+    }
+
     /**
      * 获取tim对象
      * @returns {null}
@@ -54,24 +68,24 @@ class Tim {
         return this._SDKInstance;
     }
 
+    async getConversationList(){
+      const res =  await this._SDKInstance.getConversationList();
+      return res.data.conversationList;
+    }
+
     async getMessageList(targetUserId, count = 10) {
-        console.log("1", targetUserId)
         if (this.isCompleted) {
             return
         }
-        console.log("2")
-        targetUserId = 'user1'
         const res = await this._SDKInstance.getMessageList({
             conversationID: `C2C${targetUserId}`,
             nextReqMessageID: this._nextReqMessageID,
             count: count > 15 ? 15 : count
         })
 
-        console.log("3", res)
-        this._nextReqMessageID = res.data._nextReqMessageID;
+        this._nextReqMessageID = res.data.nextReqMessageID;
         this.isCompleted = res.data.isCompleted;
         this._messageList = res.data.messageList;
-        console.log("4")
         return this._messageList;
     }
 
@@ -122,10 +136,11 @@ class Tim {
                 message = this._SDKInstance.createImageMessage(params);
                 break;
             case TIM.TYPES.MSG_CUSTOM:
+                console.log("content ",content)
                 params.payload = {
                     data:'service',
-                    text:JSON.stringify(content),
-                    extension
+                    description:JSON.stringify(content),
+                    extension:extension
                 }
                 message = this._SDKInstance.createCustomMessage(params);
                 break;

@@ -1,20 +1,22 @@
 <view class="container">
     <view class="time">{{_message.time}}</view>
     <view class="message-area" style="{{_message.flow === flowEnum.IN?'':'flex-direction: row-reverse;'}}">
-        <view class="avatar">
-            <image class="avatar-image" src="{{_message.avatar}}"></image>
+        <view class="avatar" >
+<!--            <image class="avatar-image" src="{{_message.avatar}}"></image>-->
+            <image class="avatar-image" src="http://s.bugio.cn/img/qq.jpg"></image>
         </view>
-        <view class="content" style="backgroud-color:{{_message.flow === flowEnum.IN?'#fff':'#f3d066'}}">
+
+        <view class="content" style="background-color: {{_message.flow === flowEnum.IN?'#4fc3f7':'#F3D066'}};">
             <block wx:if="{{_message.type === TIM.TYPES.MSG_TEXT}}">
                 {{_message.payload.text}}
             </block>
             <block wx:if="{{_message.type === TIM.TYPES.MSG_IMAGE}}">
-                <image bind:tap="handlePreview" data-image="{{_message.payload.imageInfoArray[1].url}}" mode="center" src="{{_message.payload.imageInfoArray[1].url}}"></image>
+                <image bind:tap="handlePreview" data-image="{{_message.payload.imageInfoArray[1].url}}"  src="{{_message.payload.imageInfoArray[0].url}}"></image>
             </block>
             <block wx:if="{{_message.type === TIM.TYPES.MSG_CUSTOM}}">
                 {{_message.payload.text}}
-                <i-service-link flow="{{_message.flow}}" service="_message.payload.description"
-                    bind:send="handleSend" bind:select="handleSelect"
+                <i-service-link flow="{{_message.flow}}" service="{{_message.payload.description}}"
+                    bind:send="handleSend" bind:select="handleSelect" extension="{{_message.payload.extension}}"
                 ></i-service-link>
             </block>
         </view>

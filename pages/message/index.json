@@ -1,4 +1,6 @@
 {
+  "navigationBarTitleText": "消息列表",
   "usingComponents": {
+    "i-coversation-preview": "components/coversation-preview/coversation-preview"
   }
 }

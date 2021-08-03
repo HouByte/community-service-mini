@@ -6,6 +6,8 @@ import serviceStatus from "../../enum/service-status";
 import {getEventParam} from "../../utils/utils";
 import serviceAction from "../../enum/service-action";
 import cache from "../../enum/cache";
+import {createStoreBindings} from "mobx-miniprogram-bindings";
+import {timStore} from "../../store/tim";
 const rating = new Rating();
 Page({
     data: {
@@ -25,6 +27,13 @@ Page({
         await this._getServiceRatingList();
         this.setData({
             loading:false
+        })
+
+        //全局状态绑定
+        this.storeBindings = createStoreBindings(this,{
+            store:timStore,
+            fields:['sdkReady'],
+            actions:{timLogin:'login'}
         })
     },
     async _getServiceById(){
@@ -67,8 +76,20 @@ Page({
         })
 
     },
-    handleChat:function (){
+    handleChat:async function (){
 
+
+        if (!this.data.sdkReady){
+            const userInfo = await wx.getStorageSync("user-info");
+            if (!userInfo){ //未登入情况
+                wx.navigateTo({
+                    url:'/pages/login/index'
+                })
+            } else {
+                this.timLogin();
+            }
+
+        }
         const targetUserId = this.data.service.publisher.id;
         const service = JSON.stringify(this.data.service);
         wx.navigateTo({

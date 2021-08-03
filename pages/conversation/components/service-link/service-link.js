@@ -1,14 +1,31 @@
 Component({
     properties: {
         flow:String,
-        service:String
+        service:String,
+        extension:String
     },
     lifetimes:{
         attached() {
-            this.setData({
-                _service:JSON.parse(this.data.service)
-            })
+            // let service = this.data.service;
+            //
+            // console.log("test",service,typeof service === Object)
+            // service = typeof service === Object ? service:JSON.parse(service);
+            // console.log(service)
+            // this.setData({
+            //     _service:service
+            // })
         }
+    },
+    observers:{
+      service:function (service){
+            if (!service){
+                console.log(service,"null service")
+                return;
+            }
+          this.setData({
+              _service:typeof service === Object ? service:JSON.parse(service)
+          })
+      }
     },
     data: {
         _service:null,
@@ -19,10 +36,10 @@ Component({
     },
     methods: {
         handleSendLink:function (){
-            this.triggerEvent('send',{sercice:this.data._service})
+            this.triggerEvent('send',{service:this.data._service})
         },
         handleSelect:function (){
-            this.triggerEvent('select',{sercice:this.data._service})
+            this.triggerEvent('select',{service:this.data._service})
         }
     }
 });

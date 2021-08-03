@@ -2,6 +2,7 @@ import {storeBindingsBehavior} from "mobx-miniprogram-bindings";
 import {timStore} from "../../../../store/tim";
 import {getEventParam} from "../../../../utils/utils";
 import TIM from "tim-wx-sdk-ws";
+import Tim from "../../../../model/tim";
 Component({
     behaviors:[storeBindingsBehavior],
     properties: {
@@ -9,17 +10,24 @@ Component({
         service:Object
     },
     data: {
-        text:''
+        text:'',
+        scrollHeight:100
     },
     storeBindings:{
         store:timStore,
-        fields:['messageList'],
-        actions:['getMessageList','setTargetUserId']
+        fields:['messageList','intoView'],
+        actions:['getMessageList','setTargetUserId','scrollMessageList','pushMessage']
     },
     lifetimes:{
-      attached() {
-          this.setTargetUserId(this.data.targetUserId);
-          this.getMessageList();
+      async attached() {
+          this._setScrollHeight();
+          this._setNavigationBarTitle();
+          await this.setTargetUserId(this.data.targetUserId);
+          await this.getMessageList();
+          if (this.data.service) {
+              const message = Tim.getInstance().createMessage(TIM.TYPES.MSG_CUSTOM, this.data.service, this.data.targetUserId,'link')
+              this.pushMessage(message);
+          }
       }
     },
     methods: {
@@ -49,7 +57,6 @@ Component({
             })
         },
         handleMessageSend:function (){
-            console.log(this.data)
             const text = this.data.text.trim();
             if (text === ''){
                 return
@@ -65,6 +72,32 @@ Component({
         },
         handleInput:function (e){
             this.data.text = getEventParam(e,'value');
+        },
+        async _setScrollHeight(){
+          const systemInfo = await wx.getSystemInfo();
+          const scrollHeight = systemInfo.windowHeight - (systemInfo.screenHeight - systemInfo.safeArea.bottom) - 95;
+          this.setData({
+              scrollHeight
+          })
+        },
+        handleScrollUpper:function (){
+            if (Tim.getInstance().isCompleted) {
+                return
+            }
+            wx.showLoading({
+                title:'正在加载...',
+                mask:true
+            });
+            this.scrollMessageList();
+
+            setTimeout(()=>wx.hideLoading(),1000);
+
+        },
+        async _setNavigationBarTitle(){
+           const res = await Tim.getInstance().getUserProfile(this.data.targetUserId)
+            wx.setNavigationBarTitle({
+                title:res[0].nick || '家政服务'
+            })
         }
     }
 });

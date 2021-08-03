@@ -1,9 +1,12 @@
 <view class="container">
-    <view class="message-list">
-        <view wx:for="{{messageList}}" wx:key="index">
+    <scroll-view class="message-list" scroll-y show-scrollbar="{{false}}"
+        style="height:{{scrollHeight}}px" enhanced bind:scrolltoupper="handleScrollUpper"
+        scroll-into-view="message-{{intoView}}"
+    >
+        <view wx:for="{{messageList}}" wx:key="index" id="message-{{index}}">
             <i-message message="{{item}}" bind:send="handleSend" bind:select="handleSelect"></i-message>
         </view>
-    </view>
+    </scroll-view>
 
     <view class="action-bar">
         <view class="inner-container">
@@ -12,7 +15,7 @@
                       cursor-spacing="{{30}}"
                       disable-default-padding fixed
                       hold-keyboard placeholder="文明发言"
-                      bind:input="handleInput"></textarea>
+                      bind:input="handleInput" bind:confirm="handleMessageSend"></textarea>
             <i-button shape="circle" size="mini" bind:tap="handleMessageSend">发送</i-button>
 
         </view>

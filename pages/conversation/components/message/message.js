@@ -23,6 +23,7 @@ Component({
     },
     methods: {
         handleSend:function (e){
+
             const service = getEventParam(e,'service');
             this.triggerEvent('send',{service})
         },

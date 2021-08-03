@@ -1,1 +1,21 @@
-<view>消息</view>
+<view class="container">
+    <block wx:if="{{sdkReady}}">
+        <block wx:if="{{!conversationList.length}}">
+            <i-show-status show content="暂时没有会话" ></i-show-status>
+        </block>
+        <block wx:else>
+
+            <view class="coversation-item" wx:for="{{conversationList}}" wx:key="index">
+                <i-coversation-preview user="{{item.userProfile}}" lastMessage="{{item.lastMessage}}"
+                      unreadCount="item.unreadCount" bind:tap="handleSelect" data-userId="{{item.userProfile.userID}}"
+                >
+                </i-coversation-preview>
+            </view>
+        </block>
+    </block>
+    <view wx:else>
+        <i-show-status show content="会话加载失败~~~">
+            <i-button shape="semicircle" bind:tap="handleRefresh">点击刷新</i-button>
+        </i-show-status>
+    </view>
+</view>

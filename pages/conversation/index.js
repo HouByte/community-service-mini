@@ -8,34 +8,41 @@ Page({
         service:null
     },
     onLoad: function (options) {
-        const userId = 21000;
-
-
         //全局状态绑定
         this.storeBindings = createStoreBindings(this,{
             store:timStore,
-            fields:['sdkReady']
+            fields:['sdkReady'],
+            actions:['sendMessages']
         })
 
-        const service = JSON.parse(options.service);
+        if (!options.id){
+            throw Error('会话异常')
+        }
+
+        const service = options.service?JSON.parse(options.service):null;
         this.setData({
             targetUserId:options.id,
             service
         })
 
+
+
     },
     onUnload() {
         this.storeBindings.destroyStoreBindings();
     },
-    handleRefresh:function (){
-        wx.navigateTo({
-            url:'/pages/login/index'
-        })
+    handleRefresh:async function (){
+        const userInfo = await wx.getStorageSync("user-info");
+        if (!userInfo){ //未登入情况
+            wx.navigateTo({
+                url:'/pages/login/index'
+            })
+        } else {
+            this.timLogin();
+        }
     },
     handleSendMessage:function (e){
-        console.log(e);
         const {type,content} = e.detail;
-        const message = Tim.getInstance().createMessage(type,content,this.data.targetUserId)
-        Tim.getInstance().sendMessage(message);
+        this.sendMessages(type,content,this.data.targetUserId)
     }
 });
