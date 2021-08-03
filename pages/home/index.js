@@ -2,6 +2,8 @@ import Service from "../../model/service"
 import Category from "../../model/category"
 import {getDataSet, getEventParam, throttle} from "../../utils/utils";
 import Tim from "../../model/tim";
+import cache from "../../enum/cache";
+import {setTabBarBadge} from "../../utils/wx";
 
 const service = new Service();
 Page({
@@ -19,6 +21,12 @@ Page({
         this.setData({
             loading:false
         })
+    },
+    async onShow() {
+        const data = await wx.getStorageSync(cache.UNREAD_COUNT);
+        if (data){
+            setTabBarBadge(data.index, data.count)
+        }
     },
     async _getServiceList(){
         const list = await service.getServiceList(this.data.tabIndex,this.data.categoryId);

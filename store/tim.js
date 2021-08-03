@@ -3,6 +3,7 @@ import { observable, action } from 'mobx-miniprogram'
 import Tim from "../model/tim";
 import TIM from "tim-wx-sdk-ws"
 import User from "../model/user";
+import {setTabBarBadge} from "../utils/wx";
 
 export const timStore = observable({
 
@@ -37,6 +38,8 @@ export const timStore = observable({
         this.sdkReady = true;
         const userInfo = User.getUserInfoByLocal();
         Tim.getInstance().updateUserProfile(userInfo);
+        //登入后主动获取缓存消息
+        this._getConversationList();
     },
     _handleSDKNotReady(){
         this.sdkReady = false;
@@ -100,8 +103,13 @@ export const timStore = observable({
         this.messageList = messageList.concat(this.messageList.slice());
     }),
 
-    getConversationList:action(async function (){
+    async _getConversationList(){
         this.conversationList = await Tim.getInstance().getConversationList();
+        this._setTabBarBadge(this.conversationList);
+    },
+
+    getConversationList:action(async function (){
+        this._getConversationList();
     }),
 
     _handlecConversationListUpdate(e){
@@ -109,6 +117,15 @@ export const timStore = observable({
             return;
         }
         this.conversationList = e.data;
+        this._setTabBarBadge(e.data);
+
+
+    },
+
+    _setTabBarBadge(data){
+        const unreadCount = data.reduce((sum, item)=> sum + item.unreadCount,0);
+
+        setTabBarBadge(2,unreadCount);
     }
 
 })

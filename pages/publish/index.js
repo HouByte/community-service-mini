@@ -1,5 +1,7 @@
 import {getEventParam} from "../../utils/utils";
 import Service from  "../../model/service"
+import cache from "../../enum/cache";
+import {setTabBarBadge} from "../../utils/wx";
 Page({
     data: {
         formData:{
@@ -16,6 +18,12 @@ Page({
     },
     onLoad: function (options) {
 
+    },
+    async onShow() {
+        const data = await wx.getStorageSync(cache.UNREAD_COUNT);
+        if (data){
+            setTabBarBadge(data.index, data.count)
+        }
     },
     handleSubmit:async function (e){
 

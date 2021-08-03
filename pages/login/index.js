@@ -1,6 +1,7 @@
 import cache from "../../enum/cache";
 import {createStoreBindings} from "mobx-miniprogram-bindings";
 import {timStore} from "../../store/tim";
+import {setTabBarBadge} from "../../utils/wx";
 
 Page({
     data: {},
@@ -9,11 +10,17 @@ Page({
         this.storeBindings = createStoreBindings(this,{
             store:timStore,
             fields:['sdkReady'],
-            actions: {timLogin:'login'}
+            actions: {timLogin:'login',getConversationList:'getConversationList'}
         })
     },
     onUnload() {
         this.storeBindings.destroyStoreBindings();
+    },
+    onShow() {
+        const data = wx.getSystemInfoSync(cache.UNREAD_COUNT);
+        if (data){
+            setTabBarBadge(data.index, data.count)
+        }
     },
     handleLogin:async function (){
        const res = await wx.getUserProfile({

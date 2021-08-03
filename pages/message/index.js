@@ -1,6 +1,8 @@
 import {createStoreBindings} from "mobx-miniprogram-bindings";
 import {timStore} from "../../store/tim";
 import {getDataSet} from "../../utils/utils";
+import cache from "../../enum/cache";
+import {setTabBarBadge} from "../../utils/wx";
 
 Page({
     data: {
@@ -30,6 +32,9 @@ Page({
             }
 
         }
+        this.getConversationList();
+        const data = wx.getStorageSync(cache.UNREAD_COUNT);
+        await setTabBarBadge(data.index, data.count)
     },
     handleRefresh:async function (){
         const userInfo = await wx.getStorageSync("user-info");
