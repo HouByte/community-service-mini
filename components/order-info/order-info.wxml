@@ -1,0 +1,9 @@
+<wxs src="/common/wxs/order-status.wxs" module="orderStatus"></wxs>
+<view class="container">
+    <i-info-item title="订单编号" content="{{order.orderNo}}"></i-info-item>
+    <i-info-item title="订单创建时间" content="{{order.created}}"></i-info-item>
+    <i-info-item title="订单状态" content="{{orderStatus.convert(order.status)}}"
+        titleColor="#D91818FF"
+    ></i-info-item>
+
+</view>

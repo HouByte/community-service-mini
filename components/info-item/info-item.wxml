@@ -1,0 +1,4 @@
+<view class="container" style="font-size:{{size}}rpx; color:{{titleColor}};">
+    <view class="title" style="font-size:{{size}}rpx; color:{{contentColor}};">{{title}}</view>
+    <view class="content">{{content}}</view>
+</view>

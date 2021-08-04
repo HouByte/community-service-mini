@@ -1,0 +1,5 @@
+.container{
+    background: #ffffff;
+    border-radius: 20rpx;
+    padding: 30rpx 30rpx;
+}
