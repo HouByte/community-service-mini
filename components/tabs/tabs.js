@@ -8,7 +8,18 @@ Component({
         tabs:{
             type:Array,
             value:[]
+        },
+        active:{
+            type:Number,
+            value:0
         }
+    },
+    observers:{
+      active:function (){
+          this.setData({
+              currentTabIndex:this.data.active
+          })
+      }
     },
     data: {
         currentTabIndex:0
