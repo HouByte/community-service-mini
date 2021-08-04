@@ -1,1 +1,26 @@
-<view>我的</view>
+<view class="container">
+    <view class="header">
+        <i-avatar src="{{userInfo.avatarUrl}}" text="{{userInfo.nickName}}"
+            shape="circle" fontSize="34" bind:tap="handleToUserInfo"
+        >
+        </i-avatar>
+    </view>
+
+    <view class="main">
+        <block wx:for="{{myGrid}}"  wx:for-item="grid" wx:for-index="gridIndex" wx:key="gridIndex">
+            <i-grid class="grid-container" rowNum="{{grid.rowNum}}" title="{{grid.title}}"
+                    extend="{{grid.extend}}" extendCell="{{grid.extendCell}}"
+                    bind:itemtap="handleNvaToOrder"
+                    bind:extendtap="handleNvaToOrder"
+            >
+                <i-grid-item wx:for="{{grid.gridItems}}" slot="grid-{{index}}" wx:key="index"
+                             text="{{item.text}}" icon="{{item.icon}}" cell="{{item.cell}}"
+                             showBadge="{{myStatusAll[grid.tag][item.badge]}}"
+                             badgeCount="{{myStatusAll[grid.tag][item.badge]}}"
+                ></i-grid-item>
+
+            </i-grid>
+        </block>
+    </view>
+
+</view>

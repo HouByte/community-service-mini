@@ -42,7 +42,6 @@ Page({
         setTimeout((res)=>{
             wx.hideLoading();
         },2000)
-        console.log(res);
         //sdk登入
         this.timLogin();
         //通知页面事件

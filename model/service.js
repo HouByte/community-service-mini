@@ -44,6 +44,18 @@ class Service extends Base{
     }
 
     /**
+     * 查询服务状态
+     * @param type
+     * @returns {{}}
+     */
+    static getServiceStatus(type){
+        return {
+            pending:1,
+            unpublished:2
+        }
+    }
+
+    /**
      * 更新指定id服务暂停
      * @param id
      * @param action

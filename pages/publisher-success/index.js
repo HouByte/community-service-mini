@@ -1,4 +1,4 @@
-import roleType from "../../enum/role-type";
+import ServiceStatus from "../../enum/service-status";
 
 Page({
     data: {

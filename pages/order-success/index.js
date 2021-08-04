@@ -7,7 +7,7 @@ Page({
     },
     handleCheckOrder:function (){
         wx.redirectTo({
-            url:`/pages/my-order/index?role=${roleType.COUSUMER}&status=${orderStatus.UNAPPROVED}`
+            url:`/pages/my-order/index?role=${roleType.CONSUMER}&status=${orderStatus.UNAPPROVED}`
         })
     },
     handleNavToHome:function (){
