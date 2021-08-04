@@ -5,9 +5,6 @@ Component({
     behaviors:[behavior],
     properties: {
     },
-    data: {
-        serviceTypeEnum:serviceType
-    },
     methods: {
         handleChat:function (e){
             this.triggerEvent('chat')

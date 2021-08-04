@@ -10,7 +10,14 @@
     "pages/conversation/index",
     "pages/order/index",
     "pages/order-success/index",
-    "pages/publisher-success/index"
+    "pages/publisher-success/index",
+    "pages/refund-list/index",
+    "pages/my-order/index",
+    "pages/my-service/index",
+    "components/order-preview/order-preview",
+    "pages/order-detail/index",
+    "pages/refund/index",
+    "pages/rating/index"
   ],
   "window":{
     "backgroundTextStyle":"dark",
@@ -66,6 +73,10 @@
     "i-badge": "/components/badge/badge",
     "i-grid": "/components/grid/grid",
     "i-grid-item": "/components/grid-item/grid-item",
+    "i-order-preview": "/components/order-preview/order-preview",
+    "i-chat": "/components/chat/chat",
+    "i-info-item": "/components/info-item/info-item",
+    "i-order-info": "/components/order-info/order-info",
 
     "mp-msg": "weui-miniprogram/msg/msg",
     "mp-form": "weui-miniprogram/form/form",

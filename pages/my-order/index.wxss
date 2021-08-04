@@ -1,0 +1,11 @@
+.container{
+    background: #fff;
+}
+
+.inner-container{
+    margin-top: 30rpx;
+}
+
+.order-preview{
+    margin-bottom: 30rpx;
+}

@@ -1,0 +1,42 @@
+<view class="container">
+    <view class="address" wx:if="{{order.addressSnap}}">
+        <i-icon name="map" size="50"></i-icon>
+        <view class="address-info">
+            <view class="location-info">
+                <view class="laction-base">
+                    {{order.addressSnap.provinceName}}
+                    {{order.addressSnap.cityName}}
+                    {{order.addressSnap.countyName}}
+                </view>
+                <view class="laction-desc">
+                    {{order.addressSnap.description}}
+                </view>
+            </view>
+            <view class="contact-info">
+                {{order.addressSnap.userName}} {{order.addressSnap.telNumber}}
+            </view>
+        </view>
+    </view>
+    <view class="order-preview">
+        <i-order-preview hideTop="{{true}}" order="{{order}}"></i-order-preview>
+    </view>
+    <view class="chat">
+        <i-chat userInfo="{{order[role === roleType.PUBLISHER ? 'consumer':'publisher']}}" bind:chat="handleToChat"></i-chat>
+    </view>
+    <view class="order-info">
+        <i-order-info order="{{order}}"></i-order-info>
+    </view>
+    <view class="rating-detail" wx:if="{{rating}}">
+        <view class="rating-label">服务评价</view>
+        <i-service-rating rating="{{rating}}"></i-service-rating>
+    </view>
+    <view class="action-bar">
+        <i-publisher-action order="{{order}}" wx:if="{{role === roleType.PUBLISHER}}"
+                            bind:update-status="handleUpdateOrderStatus"
+        ></i-publisher-action>
+        <i-consumer-action order="{{order}}" wx:if="{{role === roleType.CONSUMER}}"
+                           bind:update-status="handleUpdateOrderStatus" bind:refund="handleRefund" bind:rating="handleRating" bind:pay="handlePay"
+        ></i-consumer-action>
+        <i-safe-area area="bottom"></i-safe-area>
+    </view>
+</view>

@@ -1,0 +1,26 @@
+<wxs src="/common/wxs/action-label.wxs" module="actionLabel"></wxs>
+<view class="container">
+    <view class="chat" bind:tap="handleToChat">
+        <i-button special icon="telephone">联系对方</i-button>
+    </view>
+    <view class="business-action" >
+        <i-button wx:if="{{order.status === orderStatus.UNAPPROVED || order.status === orderStatus.UNPAID}}"
+                  special  bind:tap="handleNavToOrderDetail"
+        >
+            取消订单
+        </i-button>
+        <i-button wx:if="{{order.status === orderStatus.UNCONFIRMED}}"
+                  special  bind:tap="handleNavToRefund"
+        >
+            申请退款
+        </i-button>
+        <view class="basic-button">
+            <i-button wx:if="{{order.status === orderStatus.UNCONFIRMED||order.status === orderStatus.UNPAID}}"
+                      shape="semicircle" size="mini" bind:tap="handleNavToOrderDetail"
+            >
+                {{actionLabel.convert(order.status)}}
+            </i-button>
+            <i-button wx:else bind:tap="handleNavToOrderDetail" special>查看详情</i-button>
+        </view>
+       </view>
+</view>

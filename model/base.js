@@ -10,6 +10,7 @@ class Base {
         this.data = this.data.concat(response.list);
         // 判断是否当前已经是最后一页了
         this.hasMoreData = !(this.pageNum ===response.lastPage);
+        console.log(response.lastPage,this.pageNum,this.hasMoreData)
         this.pageNum ++;
 
         return this.data;

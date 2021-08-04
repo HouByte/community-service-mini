@@ -1,0 +1,21 @@
+<view class="container">
+    <view class="paid" wx:if="{{order.status === orderStatus.UNPAID}}">
+        <i-button size="mini" shape="circle" bind:tap="handlePay">支付</i-button>
+    </view>
+
+    <view class="confirm" wx:if="{{order.status === orderStatus.UNCONFIRMED}}">
+        <i-button size="mini" shape="circle" bind:tap="handleUpdateOrderStatus" data-action="{{orderAction.CONFIRM}}" >确认订单</i-button>
+    </view>
+
+    <view class="refund" wx:if="{{order.status === orderStatus.UNCONFIRMED}}">
+        <i-button size="mini" shape="circle" bind:tap="handleRefund" >申请退款</i-button>
+    </view>
+
+    <view class="refund" wx:if="{{order.status === orderStatus.UNRATED}}">
+        <i-button size="mini" shape="circle"  bind:tap="handleRating" >评价订单</i-button>
+    </view>
+
+    <view class="confirm" wx:if="{{order.status < orderStatus.UNCONFIRMED}}">
+        <i-button size="mini" shape="circle" bind:tap="handleUpdateOrderStatus" data-action="{{orderAction.CANCEL}}" >取消订单</i-button>
+    </view>
+</view>

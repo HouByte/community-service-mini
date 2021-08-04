@@ -1,0 +1,4 @@
+@import "../index.wxss";
+.deny-button{
+    margin-left: 30rpx;
+}

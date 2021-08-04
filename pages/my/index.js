@@ -5,9 +5,9 @@ import {myGrid} from "../../config/grid";
 import Order from "../../model/order";
 import roleType from "../../enum/role-type";
 import Service from "../../model/service";
-import myCardTag from "../../enum/my-card-tag";
 import serviceType from "../../enum/service-type";
 import {getEventParam} from "../../utils/utils";
+import cellType from "../../enum/cell-type";
 
 Page({
     data: {
@@ -46,8 +46,8 @@ Page({
     },
 
     async _getOrderStatus() {
-        const appointWithMeStatus = Order.getOrderStatus(roleType.PUBLISHER);
-        const myAppointStatus = Order.getOrderStatus(roleType.CONSUMER);
+        const appointWithMeStatus = Order.getOrderStatus(1,roleType.PUBLISHER);
+        const myAppointStatus = Order.getOrderStatus(1,roleType.CONSUMER);
         this.setData({
             [`myStatusAll.appointWithMeStatus`]: await appointWithMeStatus,
             [`myStatusAll.myAppointStatus`]: await myAppointStatus
@@ -68,8 +68,48 @@ Page({
         })
     },
 
-    handleNvaToOrder:function (e){
+    handleNvaToRoute:function (e){
         const cell = getEventParam(e,'cell');
+        console.log(cell)
 
+        switch (cell.type){
+            case cellType.SERVICE:
+                this._handleNvaToService(cell);
+                break;
+            case cellType.ORDER:
+                this._handleNvaToOrder(cell);
+                break;
+        }
+        // if (!('status' in cell)){
+        //     wx.navigateTo({
+        //         url:`/pages/refund-list/index?role=${cell.role}`
+        //     })
+        //     return;
+        // }
+        //
+        // wx.navigateTo({
+        //     url:`/pages/my-order/index?role=${cell.role}&status=${cell.status}`
+        // })
+
+    },
+
+    _handleNvaToOrder(cell){
+        if (!('status' in cell)){
+            wx.navigateTo({
+                url:`/pages/refund-list/index?role=${cell.role}`
+            })
+            return;
+        }
+
+        wx.navigateTo({
+            url:`/pages/my-order/index?role=${cell.role}&status=${cell.status}`
+        })
+    },
+
+    _handleNvaToService(cell){
+        const {serviceType,status} = cell;
+        wx.navigateTo({
+            url:`/pages/my-service/index?type=${serviceType}&status=${status}`
+        })
     }
 });

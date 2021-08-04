@@ -7,10 +7,6 @@ Component({
     behaviors:[behavior],
     properties: {
     },
-    data: {
-        serviceStatusEnum:serviceStatus,
-        serviceActionEnum:serviceAction
-    },
     methods: {
         handleUpdateStatus:function (e){
             console.log(e);

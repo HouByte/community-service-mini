@@ -45,4 +45,5 @@
     margin-top: 30rpx;
     flex: 1;
     background-color: #f8f5f5;
+    padding: 0rpx 15rpx;
 }

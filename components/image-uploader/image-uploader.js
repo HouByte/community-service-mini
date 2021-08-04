@@ -145,6 +145,7 @@ Component({
                 try {
                    const res = await FileUploader.upload(file.path,file.key);
                    file.id = res[0].id;
+                   file.url = res[0].path;
                    file.status = this.data.uploadStatusEnum.SUCCESS;
                    this.data._file[file.key] = file;
                    success.push(file);

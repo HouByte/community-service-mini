@@ -23,6 +23,26 @@ class Rating extends Base{
     }
 
 
+    static getRatingById(orderId){
+        return {
+            "id": orderId,
+            "score": 3,
+            "content": "牛，跟新的一样2。",
+            "illustration": [],
+            "status": 0,
+            "created": 1627646143000,
+            "author": {
+                "nickname": "yjj",
+                "avatarUrl": "http://s.bugio.cn/img/logo.jpg"
+            }
+        }
+    }
+
+    static createRating(ordderId,score,content,illustration){
+        return {}
+    }
+
+
 }
 
 export default Rating;

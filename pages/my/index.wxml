@@ -10,8 +10,8 @@
         <block wx:for="{{myGrid}}"  wx:for-item="grid" wx:for-index="gridIndex" wx:key="gridIndex">
             <i-grid class="grid-container" rowNum="{{grid.rowNum}}" title="{{grid.title}}"
                     extend="{{grid.extend}}" extendCell="{{grid.extendCell}}"
-                    bind:itemtap="handleNvaToOrder"
-                    bind:extendtap="handleNvaToOrder"
+                    bind:itemtap="handleNvaToRoute"
+                    bind:extendtap="handleNvaToRoute"
             >
                 <i-grid-item wx:for="{{grid.gridItems}}" slot="grid-{{index}}" wx:key="index"
                              text="{{item.text}}" icon="{{item.icon}}" cell="{{item.cell}}"

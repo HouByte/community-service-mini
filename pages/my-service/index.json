@@ -1,0 +1,8 @@
+{
+  "navigationBarBackgroundColor": "#f3d066",
+  "navigationBarTitleText": "服务列表",
+  "backgroundColorTop ": "f3d066",
+  "enablePullDownRefresh": true,
+  "usingComponents": {
+  }
+}

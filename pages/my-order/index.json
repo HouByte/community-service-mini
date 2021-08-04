@@ -1,0 +1,10 @@
+{
+  "navigationBarBackgroundColor": "#f3d066",
+  "navigationBarTitleText": "订单列表",
+  "backgroundColorTop ": "f3d066",
+  "enablePullDownRefresh": true,
+  "usingComponents": {
+    "i-publisher-action": "./components/publisher-action/publisher-action",
+    "i-consumer-action": "./components/consumer-action/consumer-action"
+  }
+}
