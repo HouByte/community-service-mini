@@ -20,7 +20,7 @@ class Http{
         console.log(res);
         //全局处理
         //请求成功，并且业务码正常
-        if (res.statusCode < 400 && res.data.code === 0) {
+        if (res.statusCode < 400 && res.data.code === 200) {
             return res.data.data;
         }
 

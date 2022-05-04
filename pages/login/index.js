@@ -2,6 +2,7 @@ import cache from "../../enum/cache";
 import {createStoreBindings} from "mobx-miniprogram-bindings";
 import {timStore} from "../../store/tim";
 import {setTabBarBadge} from "../../utils/wx";
+import User from "../../model/user";
 
 Page({
     data: {},
@@ -28,26 +29,39 @@ Page({
        })
 
         console.log(res)
-        wx.showLoading({
-            title:'正在授权',
-            mask:true
-        })
+        
 
+        var userInfo = res.userInfo
+
+        let that = this
         //登入操作
+        wx.login({
+            success (res) {
+              if (res.code) {
+                User.login(res.code,userInfo).then(()=>{
+                    //sdk登入
+                    that.timLogin();
+                    //通知页面事件
+                    const events = that.getOpenerEventChannel();
+                    events.emit('login');
+                    wx.navigateBack();
+                })
+                
+                //发起网络请求
+                // wx.request({
+                //   url: 'https://example.com/onLogin',
+                //   data: {
+                //     code: res.code
+                //   }
+                // })
+              } else {
+                console.log('登录失败！' + res.errMsg)
+              }
+            }
+          })
 
-
-        res.userInfo.id = 1;//res.userInfo.nickName.trim();
-        //设置缓存
-        await wx.setStorageSync(cache.USER_INFO,res.userInfo);
-        setTimeout((res)=>{
-            wx.hideLoading();
-        },2000)
-        //sdk登入
-        this.timLogin();
-        //通知页面事件
-        const events = this.getOpenerEventChannel();
-        events.emit('login');
-        wx.navigateBack();
+        
+        
     },
     handleBackHome:function (){
         wx.switchTab({
