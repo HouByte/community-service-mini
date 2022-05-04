@@ -22,7 +22,7 @@
   "window":{
     "backgroundTextStyle":"dark",
     "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "家政服务",
+    "navigationBarTitleText": "社区服务",
     "navigationBarTextStyle":"black",
     "backgroundColorBottom": "#efefef"
   },

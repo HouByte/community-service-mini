@@ -1,5 +1,6 @@
 {
-  "navigationBarBackgroundColor": "#f3d066",
+  "navigationBarBackgroundColor": "#2D9EB3",
+  "navigationBarTextStyle":"white",
   "navigationBarTitleText": "服务广场",
   "enablePullDownRefresh": true,
   "usingComponents": {

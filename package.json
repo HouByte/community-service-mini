@@ -1,6 +1,6 @@
 {
-  "name": "housekeeping",
-  "version": "1.0.0",
+  "name": "community-service-mini",
+  "version": "1.0.1",
   "description": "",
   "main": "app.js",
   "directories": {
@@ -11,13 +11,13 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://gitee.com/Vincent-Vic/housekeeping-mini.git"
+    "url": "https://gitee.com/Vincent-Vic/community-service-mini.git"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "mobx-miniprogram": "^4.13.2",
-    "mobx-miniprogram-bindings": "^2.0.0",
+    "mobx-miniprogram-bindings": "^2.1.5",
     "save": "^2.4.0",
     "tim-upload-plugin": "^1.0.3",
     "tim-wx-sdk-ws": "^2.12.0"

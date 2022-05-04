@@ -8,5 +8,6 @@
 }
 
 .nickname {
-    margin-left: 10rpx;
+    margin-left: 20rpx;
+    color: #fff;
 }

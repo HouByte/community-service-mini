@@ -111,5 +111,15 @@ Page({
         wx.navigateTo({
             url:`/pages/my-service/index?type=${serviceType}&status=${status}`
         })
+    },
+    handleToUserInfo(){
+        if(this.data.userInfo.id == undefined){
+            wx.navigateTo({
+                url:`/pages/login/index`
+            })
+        } else{
+            console.log("个人主页")
+        }
+        
     }
 });

@@ -38,8 +38,9 @@
 .category-swiper-item {
     border-radius: 20rpx;
     width: 300rpx;
-    height: 150rpx;
-    background-image: linear-gradient(to right, #e68d44, #eb6d59);
+    height: 150rpx;    
+    background-color: #0093E9;
+    background-image: linear-gradient(160deg, #0093E9 0%, #80D0C7 100%);
 }
 
 .category-name {
