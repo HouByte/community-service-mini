@@ -10,8 +10,8 @@
 
 .plain {
     background-color: transparent;
-    border: solid 1px #f3d066;
-    color: #f3d066;
+    border: solid 1px #2D9EB3;
+    color: #2D9EB3;
 }
 
 .i-button-special {

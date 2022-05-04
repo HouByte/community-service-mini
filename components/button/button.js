@@ -11,12 +11,12 @@ Component({
         // 按钮背景色
         bgColor: {
             type: String,
-            value: "#f3d066"
+            value: "#2D9EB3"
         },
         // 字体颜色
         fontColor: {
             type: String,
-            value: '#333333'
+            value: '#fff'
         },
         // 按钮宽度
         width: String,
@@ -27,7 +27,7 @@ Component({
         // 按钮图标颜色
         iconColor: {
             type: String,
-            value: '#333333'
+            value: '#fff'
         },
         // 按钮圆角半径
         radius: {
