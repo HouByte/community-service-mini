@@ -5,6 +5,7 @@ class Rating extends Base{
 
     //分页
     async getServiceRatingList(id){
+        this.hasMoreData = false
         if (!this.hasMoreData) {
             return this.data;
         }

@@ -8,7 +8,7 @@ class  Category {
      * 获取分类
      */
     static async getCategoryList(){
-        return await Http.get('/6103db27311c491a73b247da?/category/')
+        return await Http.get('category/select/options')
     }
 
 

@@ -1,4 +1,5 @@
 import serviceType from "../../enum/service-type";
+import serviceNature from "../../enum/service-nature";
 
 Component({
     properties: {
@@ -8,8 +9,10 @@ Component({
     },
     data: {
         serviceTypeEnum:serviceType,
+        serviceNatureEnum:serviceNature,
+
     },
     methods: {
-
+        
     }
 });

@@ -1,0 +1,19 @@
+var convert = function (nature) {
+    var label
+    switch (nature) {
+        case 0:
+            label = '互助'
+            break;
+        case 1:
+            label = '服务'
+            break;
+        case 2:
+            label = '公益'
+            break;
+    }
+    return label
+}
+
+module.exports = {
+    convert: convert
+}

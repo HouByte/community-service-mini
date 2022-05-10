@@ -1,3 +1,5 @@
+<wxs src="/common/wxs/nature-label.wxs" module="nature"></wxs>
+
 <view class="container">
     <view class="left">
         <view class="type-tag">{{service.type === serviceTypeEnum.PROVIDE ? '在提供':'正在找'}}</view>
@@ -9,6 +11,8 @@
             <view class="category-tag">
                 <i-icon name="biaoqian" color="#f27013"></i-icon>
                 <view class="category-text">{{service.category.name}}</view>
+                <i-icon name="biaoqian" color="#f27013" style="margin-left: 10px;"></i-icon>
+                <view class="category-text">{{nature.convert(service.nature)}}</view>
             </view>
         </view>
         <view class="row">
@@ -24,7 +28,9 @@
             <view class="create-time">{{service.beginDate}} ~ {{service.endDate}}</view>
         </view>
         <view class="row row-last">
-            <view class="price"><text class="label">￥</text>{{service.price}}</view>
+
+            <view class="price" wx:if="{{service.nature === serviceNatureEnum.SERVICE}}"><text class="label">￥</text>{{service.price}}</view>
+            <view wx:else></view>
             <view class="sales" wx:if="{{service.type === serviceTypeEnum.PROVIDE}}">{{service.salesVolume}}</view>
         </view>
     </view>

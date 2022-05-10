@@ -41,7 +41,7 @@
         </view>
         <view wx:if="{{service.type === serviceTypeEnum.PROVIDE}}" class="service-rating">
             <view class="service-rating-title">历史评价</view>
-            <view wx:if="{{ratingList.length}}" class="service-rating-list">
+            <view wx:if="{{ratingList.length>0}}" class="service-rating-list">
                 <view  class="rating-item" wx:for="{{ratingList}}" wx:key="index">
                     <i-service-rating rating="{{item}}"></i-service-rating>
                 </view>
