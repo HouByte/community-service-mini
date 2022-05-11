@@ -28,7 +28,7 @@ class Service extends Base{
         //合并
         // this.data = this.data.concat(serviceList.list);
         // // 判断是否当前已经是最后一页了
-        // this.hasMoreData = !(this.pageNum ===serviceList.lastPage);
+        // this.hasMoreData = serviceList.is_next === 1;
         // this.pageNum ++;
 
         return this.handleData(serviceList);
