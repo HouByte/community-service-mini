@@ -8,8 +8,6 @@
     <view class="right">
         <view class="row">
             <view class="service-name">{{service.title}}</view>
-            <view class="service-name">{{service.id}}</view>
-
             <view class="category-tag">
                 <i-icon name="biaoqian" color="#f27013"></i-icon>
                 <view class="category-text">{{service.category.name}}</view>
