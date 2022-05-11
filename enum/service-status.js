@@ -1,9 +1,9 @@
 
 const serviceStatus = {
+    //待发布
+    UNPUBLISHED:0,
     //待审核
-    PENDING:0,
-    //待审核
-    UNPUBLISHED:1,
+    PENDING:1,
     //已发布
     PUBLISHED:2,
     //已下架

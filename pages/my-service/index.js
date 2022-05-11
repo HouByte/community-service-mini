@@ -4,7 +4,7 @@ const service = new Service();
 
 Page({
     data: {
-        tabs:['全部服务','待审核','待发布','已发布'],
+        tabs:['全部服务','待发布','待审核','已发布'],
         serviceList:[],
         active:0,
         type:0,
@@ -13,17 +13,18 @@ Page({
     onLoad: function (options) {
         const type = parseInt(options.type);
         //status： -1 全部 0 待同意 1待支付 2 待确认 3 待评价
+        console.log(options.status);
         const status = parseInt(options.status);
         this.setData({
             active:status+1
         })
 
-        this.data.status = status < 0 ? '' : status;
+        this.data.status = status < 0 ? -1 : status;
         this.data.type = type;
         this._getSeviceList();
     },
     async _getSeviceList(){
-        const serviceList = await service.reset().getServiceList();
+        const serviceList = await service.reset().getServiceList(-1,-1,this.data.status);
         this.setData({
             serviceList
         })
@@ -54,7 +55,7 @@ Page({
 
     handleTabChange:async function (e){
         const index = getEventParam(e,'index');
-        this.data.status = index < 1 ? '' : index-1;
+        this.data.status = index < 1 ? -1 : index-1;
         await this._getSeviceList();
     }
 });

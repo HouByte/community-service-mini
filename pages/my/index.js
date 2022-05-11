@@ -27,8 +27,7 @@ Page({
 
     },
     onLoad: function (options) {
-        this._getOrderStatus();
-        this._getServiceStatus();
+        
     },
     async onShow() {
         const data = await wx.getStorageSync(cache.UNREAD_COUNT);
@@ -43,6 +42,9 @@ Page({
                 userInfo
             });
         }
+
+        this._getOrderStatus();
+        this._getServiceStatus();
     },
 
     async _getOrderStatus() {

@@ -7,7 +7,7 @@ import cellType from "../enum/cell-type";
 const myGrid = [
     {
         tag:myCardTag.appointWithMeStatus,
-        rowNum: 5,
+        rowNum: 4,
         title: '预约我的',
         extend: '查看全部',
         extendCell: {
@@ -39,19 +39,13 @@ const myGrid = [
                 cell: {type:cellType.ORDER,role: roleType.PUBLISHER, status: 3},
                 icon: 'comment',
                 text: '待评价'
-            },
-            {
-                badge: '',
-                cell: {type:cellType.ORDER,role: roleType.PUBLISHER},
-                icon: 'tuipiao',
-                text: '售后/退款'
             }
         ]
     },
 
     {
         tag:myCardTag.myAppointStatus,
-        rowNum: 5,
+        rowNum: 4,
         title: '我的预约',
         extend: '查看全部',
         extendCell: {
@@ -83,12 +77,6 @@ const myGrid = [
                 cell: {type:cellType.ORDER,role: roleType.CONSUMER, status: 3},
                 icon: 'comment',
                 text: '待评价'
-            },
-            {
-                badge: '',
-                cell: {type:cellType.ORDER,role: roleType.CONSUMER},
-                icon: 'tuipiao',
-                text: '售后/退款'
             }
         ]
     },
@@ -101,25 +89,25 @@ const myGrid = [
         extendCell: null,
         gridItems: [
             {
-                badge: 'pending',
-                cell: {type:cellType.SERVICE,serviceType: serviceType.PROVIDE, status: 0},
-                icon: 'time',
-                text: '待审核'
-            },
-            {
                 badge: 'unpublished',
-                cell: {type:cellType.SERVICE,serviceType: serviceType.PROVIDE, status: 1},
+                cell: {type:cellType.SERVICE,serviceType: serviceType.PROVIDE, status: 0},
                 icon: 'upload',
                 text: '待发布'
             },
             {
-                badge: '',
+                badge: 'pending',
+                cell: {type:cellType.SERVICE,serviceType: serviceType.PROVIDE, status: 1},
+                icon: 'time',
+                text: '待审核'
+            },
+            {
+                badge: 'published',
                 cell: {type:cellType.SERVICE,serviceType: serviceType.PROVIDE, status: 2},
                 icon: 'file-common',
                 text: '已发布'
             },
             {
-                badge: '',
+                badge: 'all',
                 cell: {type:cellType.SERVICE,serviceType: serviceType.PROVIDE, status: -1},
                 icon: 'comment',
                 text: '查看全部'
@@ -135,25 +123,25 @@ const myGrid = [
         extendCell: null,
         gridItems: [
             {
-                badge: 'pending',
-                cell: {type:cellType.SERVICE,serviceType: serviceType.SEEK, status: 0},
-                icon: 'time',
-                text: '待审核'
-            },
-            {
                 badge: 'unpublished',
-                cell: {type:cellType.SERVICE,serviceType: serviceType.SEEK, status: 1},
+                cell: {type:cellType.SERVICE,serviceType: serviceType.SEEK, status: 0},
                 icon: 'upload',
                 text: '待发布'
             },
             {
-                badge: '',
+                badge: 'pending',
+                cell: {type:cellType.SERVICE,serviceType: serviceType.SEEK, status: 1},
+                icon: 'time',
+                text: '待审核'
+            },
+            {
+                badge: 'published',
                 cell: {type:cellType.SERVICE,serviceType: serviceType.SEEK, status: 2},
                 icon: 'file-common',
                 text: '已发布'
             },
             {
-                badge: '',
+                badge: 'all',
                 key: 'unrated',
                 slot: 'unrated',
                 cell: {type:cellType.SERVICE,serviceType: serviceType.SEEK, status: -1},

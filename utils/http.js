@@ -9,7 +9,7 @@ class Http{
     //url:baseUrl+path
     //
     static async request({uri,data=null,header={},method='GET',refetch=true}){
-        header['token']=wx.getStorageSync(cache.TOKEN);
+        header['Authorization']=wx.getStorageSync(cache.TOKEN);
        const res = await wxToPromise('request',{
             url:ApiConfig.baseUrl+uri,
             data,

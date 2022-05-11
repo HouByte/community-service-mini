@@ -12,7 +12,7 @@ class Service extends Base{
      * @param type 服务类型
      * @param categoryId 分类
      */
-    async getServiceList(type=null,categoryId=null){
+    async getServiceList(type=null,categoryId=null,status=-1){
         console.log("分页获取服务列表")
         if (!this.hasMoreData) {
             return this.data;
@@ -21,7 +21,8 @@ class Service extends Base{
             page:this.pageNum,
             page_size:this.pageSize,
             type:type||-1,
-            category_id:categoryId||-1
+            category_id:categoryId||-1,
+            status: status
         })
 
         //合并
@@ -50,11 +51,10 @@ class Service extends Base{
      * @param type
      * @returns {{}}
      */
-    static getServiceStatus(type){
-        return {
-            pending:1,
-            unpublished:2
-        }
+    static async getServiceStatus(type){
+        return  await Http.getFrom('/service/status/my',{
+            type:type
+        })
     }
 
     /**
