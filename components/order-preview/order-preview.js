@@ -1,4 +1,5 @@
 import roleType from "../../enum/role-type";
+import ApiConfig from "../../config/api"
 
 Component({
     properties: {
@@ -10,7 +11,8 @@ Component({
         }
     },
     data: {
-        roleType:roleType
+        roleType:roleType,
+        imgUrl:ApiConfig.imgUrl
     },
     methods: {}
 });

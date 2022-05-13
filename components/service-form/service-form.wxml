@@ -8,6 +8,12 @@
                     <view wx:else class="picker-placeholder">请选择发布类型</view>
                 </picker>
             </mp-cell>
+            <mp-cell show-error prop="nature" title="发布性质">
+                <picker range="{{natureList}}" range-key="name" bind:change="handleNatureChange">
+                    <view wx:if="{{naturePickerIndex!== null}}">{{natureList[naturePickerIndex].name}}</view>
+                    <view wx:else class="picker-placeholder">请选择发布性质</view>
+                </picker>
+            </mp-cell>
             <mp-cell show-error prop="title" title="标题">
                 <input value="{{formData.title}}" placeholder="内容长度不少于5个字" bind:input="handleInput"
                        data-field="title"></input>
@@ -18,9 +24,9 @@
                     <view wx:else class="picker-placeholder">请选择发布类型</view>
                 </picker>
             </mp-cell>
-            <mp-cell show-error prop="coverImageId" title="封面图">
+            <mp-cell show-error prop="coverImage" title="封面图">
                 <i-image-uploader files="{{files}}" maxCount="{{1}}"
-                                  bind:hidepage="handleHidePage"   bind:uploadsuccess="handleUploadSuccess"></i-image-uploader>
+                                  bind:hidepage="handleHidePage"  bind:delete="handleCoverDelete"  bind:uploadsuccess="handleUploadSuccess"></i-image-uploader>
             </mp-cell>
             <mp-cell show-error prop="description" title="描述">
                 <textarea class="desc-textarea" bind:input="handleInput" data-field="description"
@@ -41,8 +47,8 @@
                     <view wx:else class="picker-placeholder">服务内容有效期结束日期</view>
                 </picker>
             </mp-cell>
-            <mp-cell show-error prop="price" title="价格">
-                <input value="{{formData.price}}" placeholder="服务价格，不少于1" bind:input="handleInput"
+            <mp-cell  wx:if="{{formData.nature === serviceTypeEnum.PROVIDE}}" show-error prop="price" title="价格">
+                <input value="{{formData.price}}" placeholder="服务价格" bind:input="handleInput"
                        data-field="price"></input>
             </mp-cell>
         </mp-cells>

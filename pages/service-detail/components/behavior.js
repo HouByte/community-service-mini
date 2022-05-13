@@ -1,5 +1,7 @@
 import serviceStatus from "../../../enum/service-status";
 import serviceAction from "../../../enum/service-action";
+import serviceType from "../../../enum/service-type";
+
 
 const behavior = Behavior({
     properties:{
@@ -7,7 +9,8 @@ const behavior = Behavior({
     },
     data: {
         serviceStatusEnum:serviceStatus,
-        serviceActionEnum:serviceAction
+        serviceActionEnum:serviceAction,
+        serviceTypeEnum:serviceType
     }
 })
 

@@ -8,6 +8,8 @@ import serviceAction from "../../enum/service-action";
 import cache from "../../enum/cache";
 import {createStoreBindings} from "mobx-miniprogram-bindings";
 import {timStore} from "../../store/tim";
+import ApiConfig from "../../config/api"
+
 const rating = new Rating();
 Page({
     data: {
@@ -17,7 +19,8 @@ Page({
         ratingList:[],
         serviceTypeEnum:serviceType,
         serviceStatusEnum:serviceStatus,
-        loading:true
+        loading:true,
+        imgUrl:ApiConfig.imgUrl
     },
     onLoad:async function (options) {
         console.log(options.id);

@@ -3,7 +3,7 @@
 <view class="container">
     <view class="left">
         <view class="type-tag">{{service.type === serviceTypeEnum.PROVIDE ? '在提供':'正在找'}}</view>
-        <image class="cover-image" src="{{service.coverImage.path}}"></image>
+        <image class="cover-image" src="{{imgUrl+service.coverImage}}"></image>
     </view>
     <view class="right">
         <view class="row">

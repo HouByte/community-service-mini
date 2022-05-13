@@ -43,14 +43,11 @@ Page({
         try{
             await Service.publishService(formData);
             const type = formData.type;
-            setTimeout(()=>{
-                wx.hideLoading();
-                this._resetFrom();
-                wx.redirectTo({
-                    url:`/pages/publisher-success/index?type=${type}`
-                })
-
-            },2000)
+            wx.hideLoading();
+            this._resetFrom();
+            wx.redirectTo({
+                url:`/pages/publisher-success/index?type=${type}`
+            })
         }catch (e){
             console.log(e)
         }

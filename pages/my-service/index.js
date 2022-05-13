@@ -24,7 +24,7 @@ Page({
         this._getSeviceList();
     },
     async _getSeviceList(){
-        const serviceList = await service.reset().getServiceList(-1,-1,this.data.status);
+        const serviceList = await service.reset().getServiceList(-1,-1,this.data.status,2);
         this.setData({
             serviceList
         })
@@ -47,7 +47,7 @@ Page({
             return
         }
         //
-        const serviceList = await service   .getServiceList();
+        const serviceList = await service.getServiceList(-1,-1,this.data.status,2);
         this.setData({
             serviceList
         })

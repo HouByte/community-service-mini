@@ -23,6 +23,11 @@ Component({
         fontSize: {
             type: String,
             value: '28'
+        },
+        // 展示文本的字体大小fontColor
+        fontColor: {
+            type: String,
+            value: '#000'
         }
     },
     data: {},

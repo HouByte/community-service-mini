@@ -36,19 +36,20 @@ Page({
             return;
         }
 
+        console.log(this.data.address);
+        console.log(this.data.service);
+
+
         wx.showLoading({
             title:'正在预约',
             mask:true
         })
 
         try {
-            Order.createOrder();
-            setTimeout(()=>{
-                wx.hideLoading();
-                wx.redirectTo({
-                    url:'/pages/order-success/index'
-                })
-            },2000);
+            let res = await Order.createOrder(this.data.service.id,this.data.address);
+            wx.redirectTo({
+                url:'/pages/order-success/index'
+            })
         } catch (e){
             wx.showModal({
                 title:'错误',

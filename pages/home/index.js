@@ -30,7 +30,6 @@ Page({
     },
     async _getServiceList(){
         const list = await service.getServiceList(this.data.tabIndex,this.data.categoryId);
-        console.log("data",list)
         this.setData({
             serviceList:list
         })

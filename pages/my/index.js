@@ -12,7 +12,7 @@ import cellType from "../../enum/cell-type";
 Page({
     data: {
         userInfo: {
-            avatarUrl: "http://s.bugio.cn/img/logo.jpg",
+            avatarUrl: "http://s.flowboot.cn/img/logo.png",
             nickName: "请授权登入"
         },
         // 宫格配置
@@ -37,7 +37,16 @@ Page({
 
         //验证TODO令牌
         const userInfo = User.getUserInfoByLocal();
+        console.log("xxx",userInfo);
         if (userInfo) {
+            this.setData({
+                userInfo
+            });
+        } else{
+            let userInfo = {
+                avatarUrl: "http://s.flowboot.cn/img/logo.png",
+                nickName: "请授权登入"
+            }
             this.setData({
                 userInfo
             });
@@ -48,8 +57,8 @@ Page({
     },
 
     async _getOrderStatus() {
-        const appointWithMeStatus = Order.getOrderStatus(1,roleType.PUBLISHER);
-        const myAppointStatus = Order.getOrderStatus(1,roleType.CONSUMER);
+        const appointWithMeStatus = Order.getOrderStatus(roleType.PUBLISHER);
+        const myAppointStatus = Order.getOrderStatus(roleType.CONSUMER);
         this.setData({
             [`myStatusAll.appointWithMeStatus`]: await appointWithMeStatus,
             [`myStatusAll.myAppointStatus`]: await myAppointStatus

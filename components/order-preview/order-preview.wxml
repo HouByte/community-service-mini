@@ -2,7 +2,7 @@
 <view class="container">
     <view class="top" wx:if="{{!hideTop}}">
         <i-avatar shape="circle" size="60" src="{{order[role === roleType.PUBLISHER ? 'consumer':'publisher'].avatarUrl}}"
-            text="{{order[role === roleType.PUBLISHER ? 'consumer':'publisher'].nickName}}"
+            text="{{order[role === roleType.PUBLISHER ? 'consumer':'publisher'].nickname}}"
         ></i-avatar>
         <view class="order-status">
             {{orderStatus.convert(order.status)}}
@@ -10,7 +10,7 @@
     </view>
     <view class="center">
         <view class="left">
-            <image class="cover-image" src="{{order.serviceSnap.coverImage.path}}"></image>
+            <image class="cover-image" src="{{imgUrl+order.serviceSnap.coverImage.path}}"></image>
         </view>
         <view class="right">
             <view class="service-name">{{order.serviceSnap.title}}</view>

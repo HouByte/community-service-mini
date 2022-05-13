@@ -1,7 +1,7 @@
 <view class="container">
     <view class="header">
         <i-avatar src="{{userInfo.avatarUrl}}" text="{{userInfo.nickName}}"
-            shape="circle" fontSize="34" bind:tap="handleToUserInfo"
+            shape="circle" fontSize="34" fontColor="#fff" bind:tap="handleToUserInfo"
         >
         </i-avatar>
     </view>

@@ -2,28 +2,33 @@ import wxToPromise from "./wx";
 import ApiConfig from "../config/api";
 import Http from "./http";
 
-class FileUploader extends Http{
-    static async upload(filePath,key='file'){
-        let res ;
-        try {
-            res = await wxToPromise('uploadFile',{
-                url:ApiConfig.baseUrl + '/upload/file',
-                filePath,
-                name:key
-            });
-        } catch (e){
-            FileUploader._showError(-1);
-            throw Error(e.errMsg)
-        }
+class FileUploader{
+    static upload(filePath,key='file'){
 
-        const serverData = JSON.parse(res.data);
+        return new Promise((resolve, reject) =>{
+            wx.uploadFile({
+                url: ApiConfig.baseUrl + 'upload/file', 
+                filePath: filePath,
+                name: 'file',
+                success (res){
+                    const data = res.data
+                    console.log(data);
+                    //do something
+                    const serverData = JSON.parse(res.data);
 
-        if (res.statusCode !== 201){
-            FileUploader._showError(serverData.code,serverData.msg);
-            throw Error(serverData.errMsg)
-        }
-
-        return serverData.data;
+                    if (serverData.code !== 200){
+                        reject(serverData.msg);
+                    } else{
+                        resolve(serverData.data);
+                    }
+                    
+                },
+                fail: err => {
+                    reject(err);
+                }
+              });
+        })
+        
     }
 }
 

@@ -1,5 +1,6 @@
 import serviceType from "../../enum/service-type";
 import serviceNature from "../../enum/service-nature";
+import ApiConfig from "../../config/api"
 
 Component({
     properties: {
@@ -10,9 +11,10 @@ Component({
     data: {
         serviceTypeEnum:serviceType,
         serviceNatureEnum:serviceNature,
+        imgUrl:ApiConfig.imgUrl
 
     },
     methods: {
-        
+
     }
 });

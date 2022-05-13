@@ -3,8 +3,11 @@ import Http from "../utils/http";
 
 class Order extends Base{
     //未实现
-    static createOrder(serviceId, address) {
-        return {}
+    static async createOrder(serviceId, address) {
+        return await Http.postFrom('/order/create',{
+            serviceId:serviceId,
+            address:JSON.stringify(address)
+        })
     }
 
     /**
@@ -12,13 +15,10 @@ class Order extends Base{
      * @param role
      * @returns {{unconfirmed: number, unrated: number, unpaid: number, unapproved: number}}
      */
-    static getOrderStatus(id,role) {
-        return {
-            unapproved:2,
-            unpaid:3,
-            unconfirmed:1,
-            unrated:1
-        }
+    static async getOrderStatus(role) {
+        return  await Http.getFrom('/order/status/my',{
+            role:role
+        })
     }
 
     static updateOrderStatus(orderId,action){
@@ -36,15 +36,16 @@ class Order extends Base{
      * @param status
      * @returns {[]}
      */
-    async getMyOrderList(uid,role,status){
+    async getMyOrderList(role,status){
         if (!this.hasMoreData){
             return this.data;
         }
-        const orderList =  await Http.getFrom('6109ebab311c491a7311fbb8?/order/list',{
-            pageNum:this.pageNum,
-            pageSize:this.pageSize,
-            role:role||'',
-            status:status||''
+        console.log(status);
+        const orderList =  await Http.getFrom('/order/list',{
+            page:this.pageNum,
+            page_size:this.pageSize,
+            status:status,
+            role:role
         })
         return this.handleData(orderList);
     }

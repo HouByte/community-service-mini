@@ -1,4 +1,5 @@
 import roleType from "../../enum/role-type";
+import orderStatus from "../../enum/order-status";
 
 Page({
     data: {},

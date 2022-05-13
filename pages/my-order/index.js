@@ -3,6 +3,7 @@ import {getEventParam} from "../../utils/utils";
 import roleType from "../../enum/role-type";
 
 
+
 const order = new Order();
 
 Page({
@@ -10,9 +11,9 @@ Page({
         tabs:['全部','待同意' ,'待支付' , '待确认' , '待评价'],
         orderList:[],
         role:null,
-        status:null,
+        status:-1,
         active:0,
-        roleType:roleType
+        roleType:roleType,
     },
     onLoad: function (options) {
         const role = parseInt(options.role);
@@ -23,7 +24,7 @@ Page({
             active:status+1
         })
 
-        this.data.status = status < 0 ? '' : status;
+        this.data.status = status < 0 ? -1 : status;
         this.data.role = role
     },
 
@@ -31,7 +32,8 @@ Page({
         this._getOrderList();
     },
     async _getOrderList(){
-        const orderList = await order.reset().getMyOrderList(1,this.data.role,this.data.status);
+        console.log(this.data.status);
+        const orderList = await order.reset().getMyOrderList(this.data.role,this.data.status);
         this.setData({
             orderList
         })
@@ -68,7 +70,7 @@ Page({
             return
         }
         //
-        const orderList = await order.getMyOrderList(1,this.data.role,this.data.status);
+        const orderList = await order.getMyOrderList(this.data.role,this.data.status);
         this.setData({
             orderList
         })
@@ -76,7 +78,7 @@ Page({
 
     handleTabChange:async function (e){
         const index = getEventParam(e,'index');
-        this.data.status = index < 1 ? '' : index-1;
+        this.data.status = index < 1 ? -1 : index-1;
         await this._getOrderList();
     }
 

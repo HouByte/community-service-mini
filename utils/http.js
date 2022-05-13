@@ -17,42 +17,12 @@ class Http{
             header
         })
 
-        console.log(res);
         //全局处理
         //请求成功，并且业务码正常
         if (res.statusCode < 400 && res.data.code === 200) {
             return res.data.data;
         }
 
-
-        //请求失败
-        if (res.statusCode === 401){
-            //全局状态绑定
-            this.storeBindings = createStoreBindings(this,{
-                store:timStore,
-                fields:['sdkReady'],
-                actions:{timLogout:'logout'}
-            })
-            //令牌相关操作
-            if (res.data.code === responseCode.NOT_TOKEN){
-                if (this.sdkReady){
-                    this.timLogout();
-                }
-                wx.navigateTo({
-                    url:'/pages/login/index'
-                })
-                throw Error('请求未携带令牌');
-            }
-
-            if (refetch){
-                return Http._refetch({uri,data,header,method});
-            }
-
-            if (this.sdkReady){
-                this.timLogout();
-            }
-
-        }
 
         let errorCode;
         let errorMsg;
@@ -65,6 +35,30 @@ class Http{
             errorMsg = res.errMsg;
         }
 
+        //请求失败
+        if (res.statusCode === 401){
+            //全局状态绑定
+            this.storeBindings = createStoreBindings(this,{
+                store:timStore,
+                fields:['sdkReady'],
+                actions:{timLogout:'logout'}
+            })
+            if (this.sdkReady){
+                this.timLogout();
+            }
+            wx.navigateTo({
+                url:'/pages/login/index'
+            })
+
+            //登入过期或者未登入都清除
+            wx.clearStorageSync();
+
+            errorMsg = "需要登入"
+
+        }
+
+        
+
         this._showError(errorCode,errorMsg);
         throw Error(errorMsg);
     }
@@ -73,7 +67,9 @@ class Http{
         return this.request({uri,data});
     }
 
-    static async post(uri,data=null,header={}){
+    static async post(uri,data=null,header={
+        'content-type': 'application/json'
+    }){
         return this.request({uri,data,method:'POST'});
     }
 

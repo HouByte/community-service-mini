@@ -11,8 +11,9 @@ class Service extends Base{
      * @param pageSize 每页数量
      * @param type 服务类型
      * @param categoryId 分类
+     * @param source 来源 1 首页 2 我的
      */
-    async getServiceList(type=null,categoryId=null,status=-1){
+    async getServiceList(type=null,categoryId=null,status=-1,source=1){
         console.log("分页获取服务列表")
         if (!this.hasMoreData) {
             return this.data;
@@ -22,7 +23,8 @@ class Service extends Base{
             page_size:this.pageSize,
             type:type||-1,
             category_id:categoryId||-1,
-            status: status
+            status: status,
+            source:source
         })
 
         //合并
@@ -72,8 +74,19 @@ class Service extends Base{
      * @param formData
      * @returns {{}}
      */
-    static publishService(formData){
-        return {}
+    static async publishService(formData){
+        if (formData.id === undefined){
+            delete formData.id
+        }
+        if (formData.designatedPlace){
+            formData.designatedPlace = 1
+        } else{
+            formData.designatedPlace = 0
+        }
+        if (formData.price === undefined || formData.price.trim() === ''){
+            formData.price = 0
+        }
+        return await Http.postFrom('/service/publish',formData)
     }
 
     /**

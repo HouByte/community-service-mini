@@ -40,9 +40,7 @@ Component({
           const _files = [];
           newValue.forEach((item,index)=>{
               const file = {
-                  id:item.id,
-                  key:index+'',
-                  path:item.path,
+                  uri:item.uri,
                   status:this.data.uploadStatusEnum.SUCCESS,
                   error:null
               };
@@ -142,16 +140,19 @@ Component({
         async _executeUpload(uploadTask){
             const  success = [];
             for (const file of uploadTask) {
+
+               
+               
                 try {
-                   const res = await FileUploader.upload(file.path,file.key);
-                   file.id = res[0].id;
-                   file.url = res[0].path;
-                   file.status = this.data.uploadStatusEnum.SUCCESS;
-                   this.data._file[file.key] = file;
-                   success.push(file);
+                    const res = await FileUploader.upload(file.path,file.key);
+                    file.uri = res.uri;
+                    file.status = this.data.uploadStatusEnum.SUCCESS;
+                    // this.data._files.push(file);
+                    success.push(file);
                 }catch (e){
+                    console.log(e);
                         file.status = this.data.uploadStatusEnum.ERROR;
-                    file.error = e.errMsg;
+                    file.error = "上传失败";
                     this.triggerEvent('uploadfail',{file,errot:e})
                 }
             }
@@ -159,7 +160,8 @@ Component({
                 _files:this.data._files
             })
             if (success.length){
-                this.triggerEvent('uploadsuccess',{file,success})
+                console.log(success);
+                this.triggerEvent('uploadsuccess',{files:success})
             }
         }
 

@@ -9,6 +9,7 @@ Component({
             type: Object,
             value: {
                 type: null,
+                nature: null,
                 title: null,
                 categoryId: null,
                 coverImage: null,
@@ -24,32 +25,52 @@ Component({
         typeList: [
             {
                 id: serviceType.PROVIDE,
-                name: '提供服务'
+                name: '提供'
             },
             {
                 id: serviceType.SEEK,
-                name: '寻找服务'
+                name: '寻找'
             }
         ],
         typePickerIndex: null,
         formData: {
             type: null,
+            nature: null,
             title: '',
             categoryId: null,
-            coverImageId: null,
+            coverImage: null,
             description: '',
             designatedPlace: false,
             beginDate: '',
             endDate: '',
-            price: ''
+            price: 0
         },
         categoryList: [],
         categoryPickerIndex: null,
+        natureList: [
+            {
+                id: 0, 
+                name: "互助"
+            },
+            {
+                id: 1, 
+                name: "服务"
+            },
+            {
+                id: 2, 
+                name: "公益"
+            }
+        ],
+        naturePickerIndex: null,
         error:null,
         rules: [
             {
                 name: 'type',
                 rules: { required: true, message: '请指定服务类型' },
+            },
+            {
+                name: 'nature',
+                rules: { required: true, message: '请指定服务性质' },
             },
             {
                 name: 'title',
@@ -62,10 +83,10 @@ Component({
                 name: 'categoryId',
                 rules: { required: true, message: '未指定服务所属分类' },
             },
-            {
-                name: 'coverImageId',
-                rules: { required: true, message: '请上传封面图' },
-            },
+            // {
+            //     name: 'coverImage',
+            //     rules: { required: true, message: '请上传封面图' },
+            // },
             {
                 name: 'description',
                 rules: [
@@ -94,24 +115,24 @@ Component({
                 ],
 
             },
-            {
-                name: 'price',
-                rules: [
-                    { required: true, message: '请指定服务价格' },
-                    {
-                        validator: function (rule, value, param, models) {
-                            const pattern = /(^[1-9]{1}[0-9]*$)|(^[0-9]*\.[0-9]{2}$)/
-                            const isNum = pattern.test(value);
+            // {
+            //     name: 'price',
+            //     rules: [
+            //         { required: true, message: '请指定服务价格' },
+            //         {
+            //             validator: function (rule, value, param, models) {
+            //                 const pattern = /(^[1-9]{1}[0-9]*$)|(^[0-9]*\.[0-9]{2}$)/
+            //                 const isNum = pattern.test(value);
 
-                            if (isNum) {
-                                return null
-                            }
-                            return '价格必须是数字'
-                        }
-                    },
-                    { min: 1, message: '天下没有免费的午餐' },
-                ],
-            },
+            //                 if (isNum) {
+            //                     return null
+            //                 }
+            //                 return '价格必须是数字'
+            //             }
+            //         },
+            //         { min: 0.1, message: '服务是收费的功能' },
+            //     ],
+            // },
         ],
         resetForm: true,
         showForm: true,
@@ -161,7 +182,7 @@ Component({
                     type: this.data.form.type,
                     title: this.data.form.title,
                     categoryId: this.data.form.categoryId,
-                    coverImageId: this.data.form.coverImage ? this.data.form.coverImage.id:null,
+                    coverImage: this.data.form.coverImage ? this.data.form.coverImage:null,
                     description: this.data.form.description,
                     designatedPlace: this.data.form.designatedPlace,
                     beginDate: this.data.form.beginDate,
@@ -194,6 +215,14 @@ Component({
             this.setData({
                 typePickerIndex: index,
                 ['formData.type']: this.data.typeList[index].id
+            });
+        },
+        handleNatureChange(e) {
+            console.log(e)
+            const index = getEventParam(e, 'value');
+            this.setData({
+                naturePickerIndex: index,
+                ['formData.nature']: this.data.natureList[index].id
             });
         },
         handleInput: function (e) {
@@ -230,7 +259,13 @@ Component({
             console.log(this.data.formData)
         },
         handleUploadSuccess:function (e){
-            console.log(e)
+            let files = e.detail.files
+            this.data.formData.coverImage = files[0].uri
+            this.data.form.coverImage = files[0].uri
+        },
+        handleCoverDelete:function (e){
+            this.data.formData.coverImageUri = undefined
+            this.data.form.coverImage = undefined
         },
         handleHidePage:function (){
             this.data.resetForm = false

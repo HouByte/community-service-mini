@@ -6,7 +6,7 @@
     <view class="inner-container">
         <view class="service-info">
             <view class="cover-image">
-                <image  src="{{service.coverImage.path}}"></image>
+                <image  src="{{imgUrl+service.coverImage}}"></image>
             </view>
             <view class="row">
                 <view class="title">{{service.title}}</view>
