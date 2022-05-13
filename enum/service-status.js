@@ -9,9 +9,9 @@ const serviceStatus = {
     //已下架
     OFF_SHELVES:3,
     //已取消
-    CANCELED:4,
+    CANCELED:14,
     //审核不通过
-    DENY:5
+    DENY:4
 }
 
 export default serviceStatus;

@@ -167,13 +167,21 @@ Component({
     //
     //     }
     // },
+    onLoad(){
+        this._init()
+    },
     methods: {
         async _init() {
             const categoryList = await Category.getCategoryList();
             const categoryPickerIndex = categoryList.findIndex(item => this.data.form.categoryId === item.id);
             const typePickerIndex = this.data.typeList.findIndex(item => this.data.form.type === item.id);
+            const naturePickerIndex = this.data.natureList.findIndex(item => this.data.form.nature === item.id);
+
+            let i = this.data.form.coverImage.indexOf('upload')
+
             this.setData({
                 typePickerIndex: typePickerIndex !== -1 ? typePickerIndex : null,
+                naturePickerIndex: naturePickerIndex !== -1 ? naturePickerIndex : null,
                 categoryList,
                 categoryPickerIndex: categoryPickerIndex !== -1 ? categoryPickerIndex : null,
                 files:this.data.form.coverImage ? [this.data.form.coverImage]:[],
@@ -181,8 +189,9 @@ Component({
                     id:this.data.form.id,
                     type: this.data.form.type,
                     title: this.data.form.title,
+                    nature: this.data.form.nature,
                     categoryId: this.data.form.categoryId,
-                    coverImage: this.data.form.coverImage ? this.data.form.coverImage:null,
+                    coverImage: this.data.form.coverImage ? this.data.form.coverImage.substring(i):null,
                     description: this.data.form.description,
                     designatedPlace: this.data.form.designatedPlace,
                     beginDate: this.data.form.beginDate,

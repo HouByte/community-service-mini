@@ -1,5 +1,7 @@
 import {getEventParam} from "../../utils/utils";
 import Service from "../../model/service";
+import ApiConfig from "../../config/api";
+
 
 Page({
     data: {
@@ -12,11 +14,13 @@ Page({
         this._init(service);
     },
     _init(service){
+        console.log( ApiConfig.imgUrl+service.coverImage);
         const formData = {
             type: service.type,
+            nature: service.nature,
             title: service.title,
-            categoryId: service.category.id,
-            coverImage: service.coverImage,
+            categoryId: service.category,
+            coverImage: ApiConfig.imgUrl+service.coverImage,
             description: service.description,
             designatedPlace: service.designatedPlace,
             beginDate: service.beginDate,
@@ -24,9 +28,19 @@ Page({
             price: service.price
         }
 
+        console.log(formData);
         this.setData({
             formData,
             serviceId:service.id
+        })
+    },
+    _resetFrom:function(){
+        const formData = {
+        }
+
+        this.setData({
+            formData,
+            serviceId:undefined
         })
     },
     handleSubmit:async function (e){
@@ -45,16 +59,14 @@ Page({
         })
         const formData = getEventParam(e,'formData')
         try{
-            await Service.editService(this.data.serviceId,formData);
-            const type = formData.type;
-            setTimeout(()=>{
-                wx.hideLoading();
-                this._resetFrom();
-                wx.redirectTo({
-                    url:`/pages/publisher-success/index?type=${type}`
-                })
 
-            },2000)
+            formData.id = this.data.serviceId
+            await Service.publishService(formData);
+            const type = formData.type;
+            this._resetFrom();
+            wx.redirectTo({
+                url:`/pages/publisher-success/index?type=${type}`
+            })
         }catch (e){
             console.log(e)
         }

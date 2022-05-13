@@ -40,7 +40,7 @@ Component({
           const _files = [];
           newValue.forEach((item,index)=>{
               const file = {
-                  uri:item.uri,
+                  path:item,
                   status:this.data.uploadStatusEnum.SUCCESS,
                   error:null
               };

@@ -2,6 +2,7 @@ import {getEventParam} from "../../utils/utils";
 import Service from  "../../model/service"
 import cache from "../../enum/cache";
 import {setTabBarBadge} from "../../utils/wx";
+import ApiConfig from "../../config/api"
 Page({
     data: {
         formData:{
