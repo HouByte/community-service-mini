@@ -1,5 +1,5 @@
 <view class="container">
-    <i-tabs tabs="{{tabs}}" active="{{active}}" bind:change="handleTabChange">
+    <i-tabs tabs="{{tabs}}" active="{{active}}" bind:change="handleTabChange" bind:search="handlerSearch">
         <view slot="panel">
             <view class="service-preview" wx:for="{{serviceList}}" wx:key="index">
                 <i-service-preview service="{{item}}" data-service="{{item}}" bind:tap="handleSelect"></i-service-preview>

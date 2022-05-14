@@ -1,5 +1,5 @@
 <view class="container">
-    <i-tabs tabs="{{tabs}}" active="{{active}}" bind:change="handleTabChange">
+    <i-tabs tabs="{{tabs}}" active="{{active}}" bind:change="handleTabChange" bind:search="handlerSearch">
         <view class="inner-container" slot="panel">
             <view class="order-preview" wx:for="{{orderList}}" wx:key="index">
                 <i-order-preview order="{{item}}" role="{{role}}">

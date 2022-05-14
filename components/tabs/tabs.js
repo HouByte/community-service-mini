@@ -22,7 +22,8 @@ Component({
       }
     },
     data: {
-        currentTabIndex:0
+        currentTabIndex:0,
+        keyword:''
     },
     methods: {
         //1.传入一个数组，按数组元素内容渲染我们的标签页选项
@@ -64,6 +65,15 @@ Component({
             }
             //使用已有方法
             this.handlerTabChange(customEvent);
+        },
+        inputKeyword:function(e){
+            // 获取到input的值
+	        this.data.keyword = e.detail.value;
+        },
+        handlerSearch:function (e){
+            
+            //产生事件
+             this.triggerEvent('search',{'keyword':this.data.keyword});
         }
     }
 });

@@ -13,7 +13,7 @@ class Service extends Base{
      * @param categoryId 分类
      * @param source 来源 1 首页 2 我的
      */
-    async getServiceList(type=null,categoryId=null,status=-1,source=1){
+    async getServiceList(type=null,categoryId=null,status=-1,source=1,mix_kw=''){
         console.log("分页获取服务列表")
         if (!this.hasMoreData) {
             return this.data;
@@ -24,7 +24,8 @@ class Service extends Base{
             type:type||-1,
             category_id:categoryId||-1,
             status: status,
-            source:source
+            source:source,
+            mix_kw:mix_kw.trim()
         })
 
         //合并
@@ -66,7 +67,7 @@ class Service extends Base{
      * @returns {{}}
      */
     static async updateServiceStatus(id,action){
-        
+
         return await Http.postFrom('/service/ops',{
             id:id,
             act:action

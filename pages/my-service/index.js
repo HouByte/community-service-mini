@@ -21,10 +21,10 @@ Page({
 
         this.data.status = status < 0 ? -1 : status;
         this.data.type = type;
-        this._getSeviceList();
+        this._getServiceList();
     },
-    async _getSeviceList(){
-        const serviceList = await service.reset().getServiceList(-1,-1,this.data.status,2);
+    async _getServiceList(mix_kw=''){
+        const serviceList = await service.reset().getServiceList(-1,-1,this.data.status,2,mix_kw);
         this.setData({
             serviceList
         })
@@ -38,7 +38,7 @@ Page({
     },
 
     async onPullDownRefresh() {
-        await this._getSeviceList();
+        await this._getServiceList();
         wx.stopPullDownRefresh();
     },
 
@@ -56,6 +56,11 @@ Page({
     handleTabChange:async function (e){
         const index = getEventParam(e,'index');
         this.data.status = index < 1 ? -1 : index-1;
-        await this._getSeviceList();
+        await this._getServiceList();
+    },
+    handlerSearch:async function(e){
+        let keyword = getEventParam(e,'keyword')
+        console.log(keyword);
+        await this._getServiceList(keyword);
     }
 });

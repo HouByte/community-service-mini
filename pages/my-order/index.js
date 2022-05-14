@@ -31,9 +31,9 @@ Page({
     onShow() {
         this._getOrderList();
     },
-    async _getOrderList(){
+    async _getOrderList(mix_kw=''){
         console.log(this.data.status);
-        const orderList = await order.reset().getMyOrderList(this.data.role,this.data.status);
+        const orderList = await order.reset().getMyOrderList(this.data.role,this.data.status,mix_kw);
         this.setData({
             orderList
         })
@@ -80,6 +80,11 @@ Page({
         const index = getEventParam(e,'index');
         this.data.status = index < 1 ? -1 : index-1;
         await this._getOrderList();
+    },
+    handlerSearch:async function(e){
+        let keyword = getEventParam(e,'keyword')
+        console.log(keyword);
+        await this._getOrderList(keyword);
     }
 
 });

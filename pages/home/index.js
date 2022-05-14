@@ -28,8 +28,8 @@ Page({
             setTabBarBadge(data.index, data.count)
         }
     },
-    async _getServiceList(){
-        const list = await service.getServiceList(this.data.tabIndex,this.data.categoryId);
+    async _getServiceList(mix_kw=''){
+        const list = await service.getServiceList(this.data.tabIndex,this.data.categoryId,-1,1,mix_kw);
         this.setData({
             serviceList:list
         })
@@ -65,6 +65,12 @@ Page({
         wx.navigateTo({
             url:'/pages/service-detail/service-detail?id='+serviceId
         })
+    },
+    handlerSearch:async function(e){
+        let keyword = getEventParam(e,'keyword')
+        console.log(keyword);
+        service.reset()
+        await this._getServiceList(keyword);
     },
     /**
      * 下拉刷新

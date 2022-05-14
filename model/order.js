@@ -41,7 +41,7 @@ class Order extends Base{
      * @param status
      * @returns {[]}
      */
-    async getMyOrderList(role,status){
+    async getMyOrderList(role,status,mix_kw=''){
         if (!this.hasMoreData){
             return this.data;
         }
@@ -50,7 +50,8 @@ class Order extends Base{
             page:this.pageNum,
             page_size:this.pageSize,
             status:status,
-            role:role
+            role:role,
+            mix_kw:mix_kw.trim()
         })
         return this.handleData(orderList);
     }
