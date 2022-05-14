@@ -120,8 +120,8 @@ Page({
     _generateModalContent(action){
       let content;
       switch (action){
-          case serviceAction.PAUSE:
-              content = '暂停后服务状态为“待发布”，可在个人中心操作重新发布上线，是否确定暂停发布该服务？';
+          case serviceAction.OFF_SHELVES:
+              content = '下架服务后，可在个人中心操作重新发布上线，是否确定下架该服务？';
               break
           case serviceAction.PUBLISH:
               content = '发布后可在广场页面中被浏览，是否确定发布？';

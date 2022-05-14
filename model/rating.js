@@ -4,14 +4,14 @@ import Base from "./base";
 class Rating extends Base{
 
     //分页
-    async getServiceRatingList(id){
-        this.hasMoreData = false
+    async getServiceRatingList(sid){
         if (!this.hasMoreData) {
             return this.data;
         }
-        const ratingList = await Http.getFrom('6105223a311c491a73f2d8c5?/service/rating/list',{
-            pageNum:this.pageNum,
-            pageSize:this.pageSize
+        const ratingList = await Http.getFrom('/rating/list',{
+            page:this.pageNum,
+            page_size:this.pageSize,
+            sid:sid
         });
 
         // //合并
@@ -24,23 +24,20 @@ class Rating extends Base{
     }
 
 
-    static getRatingById(orderId){
-        return {
-            "id": orderId,
-            "score": 3,
-            "content": "牛，跟新的一样2。",
-            "illustration": [],
-            "status": 0,
-            "created": 1627646143000,
-            "author": {
-                "nickname": "yjj",
-                "avatarUrl": "http://s.bugio.cn/img/logo.jpg"
-            }
-        }
+    static async getRatingById(orderId){
+        return await Http.getFrom('/rating/order',{
+            oid:orderId
+        });
     }
 
-    static createRating(ordderId,score,content,illustration){
-        return {}
+    static async createRating(id,score,content,illustration){
+        
+        return await Http.postFrom('/rating/new',{
+            id:id,
+            score:score,
+            content:content,
+            illustration:illustration
+        })
     }
 
 

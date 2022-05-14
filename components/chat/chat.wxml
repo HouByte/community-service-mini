@@ -1,6 +1,6 @@
 <view class="container">
-    <i-avatar src="{{userInfo.avatarUrl}}" text="{{userInfo.nickName}}" shape="circle" size="60" ></i-avatar>
-    <view bind:tap="handToChat">
-        <i-button special icon="telephone">联系对方</i-button>
+    <i-avatar src="{{userInfo.avatarUrl}}" text="{{userInfo.nickname}}" shape="circle" size="60" fontColor="#2D9EB3" ></i-avatar>
+    <view bind:tap="handleToChat">
+        <i-button special icon="telephone" fontColor="#2D9EB3">联系对方</i-button>
     </view>
 </view>

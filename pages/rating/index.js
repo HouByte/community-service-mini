@@ -63,10 +63,12 @@ Page({
                 return;
             }
             wx.showLoading({title:'正在评分...',mask:true});
-            const illustration = thia.data.illustration.map(item => item.url);
-            Rating.createRating(this.data.order.id,this.data.order.formData.score,this.data.order.formData.content,illustration);
+            console.log(this.data.illustration);
+            const illustration = this.data.illustration.map(item => item.uri);
+            console.log(this.data.formData);
+            Rating.createRating(this.data.order.id,this.data.formData.score,this.data.formData.content,illustration);
 
-            setTimeout(()=> wx.hideLoading(),2000);
+            setTimeout(()=> wx.hideLoading(),500);
             await wx.showModal({
                 title: '提示',
                 content: '评价成功，点击确定返回订单详情',

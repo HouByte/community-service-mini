@@ -1,7 +1,7 @@
 <view class="container">
     <view class="address" wx:if="{{order.addressSnap}}">
         <i-icon name="map" size="50"></i-icon>
-        <view class="address-info">
+        <view class="address-info" wx:if="{{order.addressSnap.userName !== '' && order.addressSnap.userName !== 'null'}}">
             <view class="location-info">
                 <view class="laction-base">
                     {{order.addressSnap.provinceName}}

@@ -37,7 +37,6 @@ Page({
 
         //验证TODO令牌
         const userInfo = User.getUserInfoByLocal();
-        console.log("xxx",userInfo);
         if (userInfo) {
             this.setData({
                 userInfo

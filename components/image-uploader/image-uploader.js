@@ -57,7 +57,8 @@ Component({
             UPLOADING:1,
             SUCCESS:2
         },
-        _files:[]
+        _files:[],
+        success:[]
     },
     methods: {
         /**
@@ -138,7 +139,7 @@ Component({
             return this.data._files.concat(res);
         },
         async _executeUpload(uploadTask){
-            const  success = [];
+            
             for (const file of uploadTask) {
 
                
@@ -148,7 +149,7 @@ Component({
                     file.uri = res.uri;
                     file.status = this.data.uploadStatusEnum.SUCCESS;
                     // this.data._files.push(file);
-                    success.push(file);
+                    this.data.success.push(file);
                 }catch (e){
                     console.log(e);
                         file.status = this.data.uploadStatusEnum.ERROR;
@@ -157,11 +158,11 @@ Component({
                 }
             }
             this.setData({
-                _files:this.data._files
+                _files:this.data._files,
+                success:this.data.success
             })
-            if (success.length){
-                console.log(success);
-                this.triggerEvent('uploadsuccess',{files:success})
+            if (this.data.success.length){
+                this.triggerEvent('uploadsuccess',{files:this.data.success})
             }
         }
 

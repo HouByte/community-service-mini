@@ -2,7 +2,8 @@ import {getEventParam} from "../../utils/utils";
 import Service from  "../../model/service"
 import cache from "../../enum/cache";
 import {setTabBarBadge} from "../../utils/wx";
-import ApiConfig from "../../config/api"
+import User from "../../model/user";
+
 Page({
     data: {
         formData:{
@@ -25,6 +26,13 @@ Page({
         if (data){
             setTabBarBadge(data.index, data.count)
         }
+        const userInfo = User.getUserInfoByLocal();
+        console.log(userInfo);
+        if (!userInfo) {
+            wx.navigateTo({
+                url:'/pages/login/index'
+            })
+        } 
     },
     handleSubmit:async function (e){
 

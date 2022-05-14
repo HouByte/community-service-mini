@@ -1,7 +1,7 @@
 
 const serviceAction = {
     PUBLISH:1,
-    PAUSE:2,
+    OFF_SHELVES:'off_shelves',
     CANCEL:3
 }
 

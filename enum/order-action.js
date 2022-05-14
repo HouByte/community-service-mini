@@ -1,10 +1,10 @@
 const orderAction = {
-    AGREE: 1,
-    DENY: 2,
-    PAY: 3,
-    CONFIRM: 4,
+    AGREE: 'agree',
+    DENY: 'deny',
+    PAY: 'pay',
+    CONFIRM: 'confirmed',
     RATING: 5,
-    REFUND: 6,
+    REFUND: 'canceled',
     CANCEL: 7,
 }
 

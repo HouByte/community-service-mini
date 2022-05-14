@@ -12,8 +12,7 @@ class FileUploader{
                 name: 'file',
                 success (res){
                     const data = res.data
-                    console.log(data);
-                    //do something
+
                     const serverData = JSON.parse(res.data);
 
                     if (serverData.code !== 200){

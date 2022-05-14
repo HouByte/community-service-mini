@@ -177,7 +177,11 @@ Component({
             const typePickerIndex = this.data.typeList.findIndex(item => this.data.form.type === item.id);
             const naturePickerIndex = this.data.natureList.findIndex(item => this.data.form.nature === item.id);
 
-            let i = this.data.form.coverImage.indexOf('upload')
+            var i = 0;
+            if (this.data.form.coverImage){
+                i = this.data.form.coverImage.indexOf('upload')
+            }
+            
 
             this.setData({
                 typePickerIndex: typePickerIndex !== -1 ? typePickerIndex : null,

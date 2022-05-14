@@ -36,10 +36,10 @@ Page({
     },
 
     async _getOrderById(){
-        const order = Order.getOrderById(this.data.order.id);
-        // this.setData({
-        //     order
-        // })
+        const order = await Order.getOrderById(this.data.order.id);
+        this.setData({
+            order
+        })
     },
 
     handleToChat:function (e) {
@@ -65,11 +65,14 @@ Page({
         wx.showLoading({title: '正在提交...', mask: true })
         try {
             await Order.updateOrderStatus(this.data.order.id, action)
+            wx.hideLoading()
+            this._getOrderById()
         } catch (e) {
+            console.log(e);
+            wx.hideLoading()
             return
         }
-        wx.hideLoading()
-        this._getOrderById()
+        
     },
     handleRefund(e){
         wx.navigateTo({

@@ -65,8 +65,12 @@ class Service extends Base{
      * @param action
      * @returns {{}}
      */
-    static updateServiceStatus(id,action){
-        return {}
+    static async updateServiceStatus(id,action){
+        
+        return await Http.postFrom('/service/ops',{
+            id:id,
+            act:action
+        })
     }
 
     /**

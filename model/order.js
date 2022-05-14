@@ -21,12 +21,17 @@ class Order extends Base{
         })
     }
 
-    static updateOrderStatus(orderId,action){
-        return {}
+    static async updateOrderStatus(id,action){
+        return await Http.postFrom('/order/ops',{
+            id:id,
+            act:action
+        })
     }
 
-    static getOrderById(orderId){
-        return {}
+    static async getOrderById(id){
+        return  await Http.getFrom('/order/desc',{
+            id:id
+        })
     }
 
     /**
