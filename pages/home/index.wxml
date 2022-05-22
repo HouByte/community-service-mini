@@ -14,7 +14,6 @@
                     </swiper-item>
                 </swiper>
             </view>
-            <view style="padding: 5px;margin-left: 6px;color: red;font-size: 14px;">注意:当前服务仅为作业演示，并非真实服务，切勿当真</view>
         </view>
         <view slot="panel">
         <!--pages/searchif/searchif.wxml-->
