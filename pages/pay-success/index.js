@@ -9,7 +9,7 @@ Page({
     },
     handleCheckService:function (){
         wx.redirectTo({
-            url:`/pages/my-order/index?type=${this.data.type}&status=${ServiceStatus.PENDING}`
+            url:`/pages/my-order/index?role=2&type=${this.data.type}&status=${ServiceStatus.PUBLISHED}`
         })
     },
     handleNavToHome:function (){

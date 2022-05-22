@@ -4,7 +4,7 @@ import Http from "../utils/http";
 class Order extends Base{
     //未实现
     static async createOrder(serviceId, address) {
-        return await Http.postFrom('/order/create',{
+        return await Http.postFrom('order/create',{
             serviceId:serviceId,
             address:JSON.stringify(address)
         })
@@ -16,20 +16,20 @@ class Order extends Base{
      * @returns {{unconfirmed: number, unrated: number, unpaid: number, unapproved: number}}
      */
     static async getOrderStatus(role) {
-        return  await Http.getFrom('/order/status/my',{
+        return  await Http.getFrom('order/status/my',{
             role:role
         })
     }
 
     static async updateOrderStatus(id,action){
-        return await Http.postFrom('/order/ops',{
+        return await Http.postFrom('order/ops',{
             id:id,
             act:action
         })
     }
 
     static async getOrderById(id){
-        return  await Http.getFrom('/order/desc',{
+        return  await Http.getFrom('order/desc',{
             id:id
         })
     }
@@ -46,7 +46,7 @@ class Order extends Base{
             return this.data;
         }
         console.log(status);
-        const orderList =  await Http.getFrom('/order/list',{
+        const orderList =  await Http.getFrom('order/list',{
             page:this.pageNum,
             page_size:this.pageSize,
             status:status,

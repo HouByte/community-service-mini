@@ -21,10 +21,11 @@ Page({
 
         this.data.status = status < 0 ? -1 : status;
         this.data.type = type;
+        console.log(this.data);
         this._getServiceList();
     },
     async _getServiceList(mix_kw=''){
-        const serviceList = await service.reset().getServiceList(-1,-1,this.data.status,2,mix_kw);
+        const serviceList = await service.reset().getServiceList(this.data.type,-1,this.data.status,2,mix_kw);
         this.setData({
             serviceList
         })
@@ -47,7 +48,7 @@ Page({
             return
         }
         //
-        const serviceList = await service.getServiceList(-1,-1,this.data.status,2);
+        const serviceList = await service.getServiceList(this.data.type,-1,this.data.status,2);
         this.setData({
             serviceList
         })

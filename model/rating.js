@@ -8,7 +8,7 @@ class Rating extends Base{
         if (!this.hasMoreData) {
             return this.data;
         }
-        const ratingList = await Http.getFrom('/rating/list',{
+        const ratingList = await Http.getFrom('rating/list',{
             page:this.pageNum,
             page_size:this.pageSize,
             sid:sid
@@ -25,14 +25,14 @@ class Rating extends Base{
 
 
     static async getRatingById(orderId){
-        return await Http.getFrom('/rating/order',{
+        return await Http.getFrom('rating/order',{
             oid:orderId
         });
     }
 
     static async createRating(id,score,content,illustration){
         
-        return await Http.postFrom('/rating/new',{
+        return await Http.postFrom('rating/new',{
             id:id,
             score:score,
             content:content,

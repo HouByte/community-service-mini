@@ -118,6 +118,7 @@ Page({
 
     _handleNvaToService(cell){
         const {serviceType,status} = cell;
+        console.log("serviceType",serviceType);
         wx.navigateTo({
             url:`/pages/my-service/index?type=${serviceType}&status=${status}`
         })

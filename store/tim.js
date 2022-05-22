@@ -74,8 +74,9 @@ export const timStore = observable({
         this.intoView = this.messageList.length - 1
     }),
 
-    sendMessages:action(async function (type,content,targetUsserId,extension=null){
-        const message = Tim.getInstance().createMessage(type,content,targetUsserId,extension)
+    sendMessages:action(async function (type,content,targetUserId,extension=null){
+        console.log(targetUserId);
+        const message = Tim.getInstance().createMessage(type,content,targetUserId,extension)
         const data = await Tim.getInstance().sendMessage(message);
         this.messageList = this.messageList.concat([data.message]);
         this.intoView = this.messageList.length -1;

@@ -18,7 +18,7 @@
 
         </view>
         <view slot="footer">
-            <view class="weui-footer__text">家政服务，放心到家</view>
+            <view class="weui-footer__text">社区服务，方便生活</view>
         </view>
     </mp-msg>
 </view>

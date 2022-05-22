@@ -43,7 +43,7 @@ class Service extends Base{
      * @returns {Promise<*>}
      */
     static async getServiceById(id){
-        return  await Http.getFrom('/service/desc',{
+        return  await Http.getFrom('service/desc',{
             id:id
         })
 
@@ -55,7 +55,7 @@ class Service extends Base{
      * @returns {{}}
      */
     static async getServiceStatus(type){
-        return  await Http.getFrom('/service/status/my',{
+        return  await Http.getFrom('service/status/my',{
             type:type
         })
     }
@@ -68,7 +68,7 @@ class Service extends Base{
      */
     static async updateServiceStatus(id,action){
 
-        return await Http.postFrom('/service/ops',{
+        return await Http.postFrom('service/ops',{
             id:id,
             act:action
         })
@@ -91,7 +91,7 @@ class Service extends Base{
         if (formData.price === undefined || formData.price.trim() === ''){
             formData.price = 0
         }
-        return await Http.postFrom('/service/publish',formData)
+        return await Http.postFrom('service/publish',formData)
     }
 
     /**

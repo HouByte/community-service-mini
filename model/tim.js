@@ -100,6 +100,7 @@ class Tim {
         const userInfo = await User.getUserInfoByLocal();
         const userId = userInfo.id.toString();
         const textUserSig = genTestUserSig(userId)
+        console.log("timLogin",userId);
         this._SDKInstance.login({
             userID: userId,
             userSig: textUserSig.userSig

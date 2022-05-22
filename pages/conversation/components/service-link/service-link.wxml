@@ -1,7 +1,7 @@
 <view class="container">
     <view class="service">
         <view class="left">
-            <image class="conver-image" src="{{_service.coverImage.path}}"></image>
+            <image class="conver-image" src="{{_service.coverImage}}"></image>
         </view>
         <view class="right">
             <view class="title">{{_service.title}}</view>

@@ -1,5 +1,5 @@
 <view class="action-bar-item ">
-    <i-button wx:if="{{service.status !== serviceStatusEnum.PUBLISHED}}"
+    <i-button wx:if="{{service.status !== serviceStatusEnum.PUBLISHED && service.status !== serviceStatusEnum.PENDING}}"
               bgColor="#44cef6" shape="semicircle" border bind:tap="handleEditService"
     >
         发布服务

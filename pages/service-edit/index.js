@@ -14,13 +14,12 @@ Page({
         this._init(service);
     },
     _init(service){
-        console.log( ApiConfig.imgUrl+service.coverImage);
         const formData = {
             type: service.type,
             nature: service.nature,
             title: service.title,
             categoryId: service.category,
-            coverImage: ApiConfig.imgUrl+service.coverImage,
+            coverImage: service.coverImage,
             description: service.description,
             designatedPlace: service.designatedPlace,
             beginDate: service.beginDate,

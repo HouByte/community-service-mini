@@ -17,7 +17,8 @@
     "components/order-preview/order-preview",
     "pages/order-detail/index",
     "pages/refund/index",
-    "pages/rating/index"
+    "pages/rating/index",
+    "pages/pay-success/index"
   ],
   "window":{
     "backgroundTextStyle":"dark",
